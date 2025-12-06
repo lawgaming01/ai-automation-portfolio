@@ -1,0 +1,1224 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Automation Specialist Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    /* --- Global Styles --- */
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      /* Dark Navy/Black Gradient Background */
+      background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1429 100%);
+      color: #e8e6f0;
+      line-height: 1.6;
+      overflow-y: auto;
+    }
+
+    /* --- Glassmorphism Core Style --- */
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+    }
+
+    /* --- Navigation --- */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      /* Glassmorphic Navbar Background */
+      background: rgba(10, 14, 39, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      /* Lilac Primary Color */
+      background: linear-gradient(135deg, #c8b3e6 0%, #9b7ec4 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #0a0e27;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #e8e6f0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: #c8b3e6;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 2rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.3;
+    }
+
+    .hero-bg svg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-content {
+      max-width: 1400px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text {
+      padding: 3rem;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      color: #ffffff;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(135deg, #c8b3e6 0%, #9b7ec4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2.5rem;
+      color: #b8b4c8;
+      line-height: 1.8;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+      font-family: inherit;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      /* Solid Lilac CTA */
+      background: linear-gradient(135deg, #c8b3e6 0%, #9b7ec4 100%);
+      color: #0a0e27;
+      box-shadow: 0 4px 20px rgba(200, 179, 230, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(200, 179, 230, 0.4);
+    }
+
+    .btn-secondary {
+      /* Glassmorphic CTA */
+      background: rgba(255, 255, 255, 0.05);
+      color: #e8e6f0;
+      border: 1px solid rgba(200, 179, 230, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(200, 179, 230, 0.1);
+      border-color: rgba(200, 179, 230, 0.5);
+    }
+
+    .hero-visual {
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-image {
+      width: 100%;
+      max-width: 500px;
+      aspect-ratio: 1;
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(200, 179, 230, 0.1) 0%, rgba(155, 126, 196, 0.1) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* --- Section Structure --- */
+    .section {
+      padding: 6rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .section-subtitle {
+      font-size: 1.25rem;
+      color: #b8b4c8;
+      text-align: center;
+      margin-bottom: 4rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .about-content {
+      padding: 3rem;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .about-content p {
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: #d0cde0;
+    }
+
+    /* --- Workflow Accordion Styles --- */
+    .workflows-accordion-container {
+      max-width: 1000px;
+      margin: 3rem auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .workflow-accordion {
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .workflow-accordion:hover {
+      box-shadow: 0 4px 20px rgba(200, 179, 230, 0.15);
+    }
+
+    .accordion-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .accordion-header:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .accordion-header-content {
+      flex: 1;
+    }
+
+    .accordion-header-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #c8b3e6;
+      font-weight: 600;
+    }
+
+    .accordion-header-content p {
+      color: #b8b4c8;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .accordion-icon {
+      font-size: 2rem;
+      color: #c8b3e6;
+      font-weight: 300;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+      margin-left: 1rem;
+    }
+
+    /* Active state for accordion icon (rotates the + to an X) */
+    .workflow-accordion.active .accordion-icon {
+      transform: rotate(45deg);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0 2rem;
+    }
+    /* JavaScript handles max-height dynamically */
+
+    .workflow-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 2rem;
+      background: rgba(10, 14, 39, 0.3);
+      border-radius: 12px;
+      border: 1px solid rgba(200, 179, 230, 0.2);
+      flex-wrap: wrap;
+    }
+
+    .workflow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .step-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, rgba(200, 179, 230, 0.2) 0%, rgba(155, 126, 196, 0.2) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      border: 1px solid rgba(200, 179, 230, 0.3);
+    }
+
+    .step-label {
+      font-size: 0.85rem;
+      color: #d0cde0;
+      text-align: center;
+      max-width: 100px;
+      font-weight: 500;
+    }
+
+    .workflow-arrow,
+    .workflow-arrow-split {
+      font-size: 1.5rem;
+      color: #c8b3e6;
+      font-weight: 300;
+      flex-shrink: 0;
+    }
+
+    .workflow-arrow-split {
+      font-size: 2rem;
+    }
+
+    /* --- Custom Work Section --- */
+    .custom-work {
+      padding: 3rem;
+    }
+
+    .custom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .process-steps {
+      list-style: none;
+      counter-reset: step-counter;
+    }
+
+    .process-steps li {
+      counter-increment: step-counter;
+      position: relative;
+      padding: 1.5rem 2rem 1.5rem 5rem;
+      margin-bottom: 1.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      border: 1px solid rgba(200, 179, 230, 0.2);
+    }
+
+    .process-steps li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #c8b3e6 0%, #9b7ec4 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #0a0e27;
+      font-size: 1.2rem;
+    }
+
+    /* --- How It Works Section --- */
+    .how-it-works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .how-card {
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+    .how-card-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      background: linear-gradient(135deg, rgba(200, 179, 230, 0.2) 0%, rgba(155, 126, 196, 0.2) 100%);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    .how-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: #ffffff;
+    }
+
+    .how-card p {
+      color: #b8b4c8;
+      line-height: 1.7;
+    }
+
+    /* --- FAQ Section --- */
+    .faq-list {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      margin-bottom: 1.5rem;
+      padding: 2rem;
+    }
+
+    .faq-question {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #c8b3e6;
+    }
+
+    .faq-answer {
+      color: #b8b4c8;
+      line-height: 1.8;
+    }
+
+    /* --- Contact Section --- */
+    .contact-content {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 3rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-weight: 500;
+      color: #e8e6f0;
+      font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(200, 179, 230, 0.2);
+      background: rgba(255, 255, 255, 0.03);
+      color: #e8e6f0;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #c8b3e6;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200, 179, 230, 0.3), transparent);
+      margin: 4rem 0;
+    }
+
+    /* --- Media Queries / Responsiveness --- */
+    @media (max-width: 1024px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .custom-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+        font-size: 0.85rem;
+      }
+
+      .hero {
+        padding: 6rem 1rem 4rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .section {
+        padding: 4rem 1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .workflows-accordion-container {
+        gap: 1rem;
+      }
+
+      .accordion-header {
+        padding: 1.5rem;
+      }
+
+      .accordion-header-content h3 {
+        font-size: 1.25rem;
+      }
+
+      .accordion-header-content p {
+        font-size: 0.9rem;
+      }
+
+      .accordion-icon {
+        font-size: 1.5rem;
+        width: 35px;
+        height: 35px;
+      }
+
+      .workflow-accordion.active .accordion-content {
+        padding: 0 1.5rem 1.5rem;
+      }
+
+      .workflow-visual {
+        padding: 1.5rem;
+        gap: 0.75rem;
+      }
+
+      .step-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+      }
+
+      .step-label {
+        font-size: 0.75rem;
+        max-width: 80px;
+      }
+
+      .workflow-arrow,
+      .workflow-arrow-split {
+        font-size: 1.25rem;
+      }
+
+      .hero-text,
+      .custom-work,
+      .about-content,
+      .contact-content {
+        padding: 2rem;
+      }
+
+      .process-steps li {
+        padding: 1.25rem 1.5rem 1.25rem 4rem;
+      }
+
+      .process-steps li::before {
+        left: 1rem;
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+      }
+
+      .logo {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+    }
+
+    /* --- Animations (CSS is set up, JS triggers it) --- */
+    .fade-in {
+      /* Initial state is set by JS now */
+      opacity: 0; 
+      transform: translateY(30px);
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body>
+  <nav class="nav">
+   <div class="nav-content">
+    <div class="logo">
+     AI
+    </div>
+    <ul class="nav-links">
+     <li><a href="#about">About</a></li>
+     <li><a href="#workflows">Workflows</a></li>
+     <li><a href="#contact">Contact</a></li>
+    </ul>
+   </div>
+  </nav>
+  <section class="hero">
+   <div class="hero-bg">
+    <svg viewbox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><defs>
+      <lineargradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+       <stop offset="0%" style="stop-color:rgb(200,179,230);stop-opacity:0.2" />
+       <stop offset="100%" style="stop-color:rgb(155,126,196);stop-opacity:0.1" />
+      </lineargradient>
+     </defs> <circle cx="200" cy="150" r="80" fill="url(#grad1)" /> <circle cx="900" cy="600" r="120" fill="url(#grad1)" /> <circle cx="1000" cy="200" r="60" fill="url(#grad1)" /> <circle cx="300" cy="650" r="90" fill="url(#grad1)" />
+    </svg>
+   </div>
+   <div class="hero-content">
+    <div class="hero-text glass fade-in">
+     <h1 id="hero-headline">Scale Your Business with <span class="hero-highlight">AI Automation</span></h1>
+     <p id="hero-subheadline">Save time, reduce costs, and unlock growth with intelligent automation workflows tailored to your business needs.</p>
+     <div class="hero-ctas"><a href="#workflows" class="btn btn-primary">View Ready Automation Workflows</a> <a href="#contact" class="btn btn-secondary">Book a Discovery Call for Custom Workflows</a>
+     </div>
+    </div>
+    <div class="hero-visual fade-in">
+     <div class="hero-image glass">
+      <svg width="300" height="300" viewbox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><defs>
+        <lineargradient id="techGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+         <stop offset="0%" style="stop-color:#c8b3e6;stop-opacity:0.8" />
+         <stop offset="100%" style="stop-color:#9b7ec4;stop-opacity:0.6" />
+        </lineargradient>
+       </defs> <g>
+        <circle cx="150" cy="150" r="100" fill="none" stroke="url(#techGrad)" stroke-width="2" opacity="0.3" />
+        <circle cx="150" cy="150" r="70" fill="none" stroke="url(#techGrad)" stroke-width="2" opacity="0.5" />
+        <circle cx="150" cy="150" r="40" fill="none" stroke="url(#techGrad)" stroke-width="2" opacity="0.7" />
+        <circle cx="150" cy="150" r="8" fill="url(#techGrad)" />
+        <line x1="150" y1="50" x2="150" y2="90" stroke="url(#techGrad)" stroke-width="2" />
+        <circle cx="150" cy="40" r="6" fill="url(#techGrad)" />
+        <line x1="235" y1="150" x2="195" y2="150" stroke="url(#techGrad)" stroke-width="2" />
+        <circle cx="245" cy="150" r="6" fill="url(#techGrad)" />
+        <line x1="150" y1="250" x2="150" y2="210" stroke="url(#techGrad)" stroke-width="2" />
+        <circle cx="150" cy="260" r="6" fill="url(#techGrad)" />
+        <line x1="65" y1="150" x2="105" y2="150" stroke="url(#techGrad)" stroke-width="2" />
+        <circle cx="55" cy="150" r="6" fill="url(#techGrad)" />
+       </g>
+      </svg>
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="section-divider"></div>
+  <section id="about" class="section">
+   <div class="glass about-content">
+    <h2 class="section-title" id="about-title">About Me</h2>
+    <p id="about-text">I'm an AI automation specialist dedicated to helping businesses streamline operations and scale efficiently. With expertise in cutting-edge AI tools and workflow design, I build custom solutions that eliminate repetitive tasks, boost productivity, and drive measurable results. Whether you need ready-to-deploy workflows or fully custom automation systems, I deliver solutions that transform how you work.</p>
+   </div>
+  </section>
+  <div class="section-divider"></div>
+  <section id="workflows" class="section">
+   <h2 class="section-title" id="workflows-title">Ready Automation Workflows</h2>
+   <p class="section-subtitle">Pre-built solutions designed to solve common business challenges and get you up and running quickly.</p>
+   <div class="workflows-accordion-container">
+    <div class="workflow-accordion glass">
+     <div class="accordion-header">
+      <div class="accordion-header-content">
+       <h3>Instant Lead Capturer</h3>
+       <p>Capture website leads instantly and notify sales.</p>
+      </div>
+      <div class="accordion-icon">
+       +
+      </div>
+     </div>
+     <div class="accordion-content">
+      <div class="workflow-visual">
+       <div class="workflow-step">
+        <div class="step-icon">
+         📝
+        </div>
+        <div class="step-label">
+         Form Submit
+        </div>
+       </div>
+       <div class="workflow-arrow">
+        →
+       </div>
+       <div class="workflow-step">
+        <div class="step-icon">
+         📊
+        </div>
+        <div class="step-label">
+         Google Sheet
+        </div>
+       </div>
+       <div class="workflow-arrow">
+        →
+       </div>
+       <div class="workflow-step">
+        <div class="step-icon">
+         📧
+        </div>
+        <div class="step-label">
+         Email/Slack Alert
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="workflow-accordion glass">
+     <div class="accordion-header">
+      <div class="accordion-header-content">
+       <h3>Meeting Booker &amp; CRM Syncer</h3>
+       <p>Sync Calendly bookings directly to HubSpot/CRM.</p>
+      </div>
+      <div class="accordion-icon">
+       +
+      </div>
+     </div>
+     <div class="accordion-content">
+      <div class="workflow-visual">
+       <div class="workflow-step">
+        <div class="step-icon">
+         📅
+        </div>
+        <div class="step-label">
+         Calendly Booking
+        </div>
+       </div>
+       <div class="workflow-arrow">
+        →
+       </div>
+       <div class="workflow-step">
+        <div class="step-icon">
+         🔍
+        </div>
+        <div class="step-label">
+         CRM Search/Create
+        </div>
+       </div>
+       <div class="workflow-arrow">
+        →
+       </div>
+       <div class="workflow-step">
+        <div class="step-icon">
+         ✅
+        </div>
+        <div class="step-label">
+         Update Record
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="workflow-accordion glass">
+     <div class="accordion-header">
+      <div class="accordion-header-content">
+       <h3>Finance Admin Saver</h3>
+       <p>Automatically create QuickBooks invoices from Stripe payments.</p>
+      </div>
+      <div class="accordion-icon">
+       +
+      </div>
+     </div>
+     <div class="accordion-content">
+      <div class="workflow-visual">
+       <div class="workflow-step">
+        <div class="step-icon">
+         💳
+        </div>
+        <div class="step-label">
+         Stripe Payment
+        </div>
+       </div>
+       <div class="workflow-arrow">
+        →
+       </div>
+       <div class="workflow-step">
+        <div class="step-icon">
+         📚
+        </div>
+        <div class="step-label">
+         QuickBooks Invoice
+        </div>
+       </div>
+       <div class="workflow-arrow">
+        →
+       </div>
+       <div class="workflow-step">
+        <div class="step-icon">
+         📬
+        </div>
+        <div class="step-label">
+         Email Notification
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="workflow-accordion glass">
+     <div class="accordion-header">
+      <div class="accordion-header-content">
+       <h3>Support Ticket Triager</h3>
+       <p>Identify urgent support emails and alert the team instantly.</p>
+      </div>
+      <div class="accordion-icon">
+       +
+      </div>
+     </div>
+     <div class="accordion-content">
+      <div class="workflow-visual">
+       <div class="workflow-step">
+        <div class="step-icon">
+         🚨
+        </div>
+        <div class="step-label">
+         Urgent Email
+        </div>
+       </div>
+       <div class="workflow-arrow">
+        →
+       </div>
+       <div class="workflow-step">
+        <div class="step-icon">
+         📋
+        </div>
+        <div class="step-label">
+         Trello Card
+        </div>
+       </div>
+       <div class="workflow-arrow">
+        →
+       </div>
+       <div class="workflow-step">
+        <div class="step-icon">
+         💬
+        </div>
+        <div class="step-label">
+         Slack Alert
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="workflow-accordion glass">
+     <div class="accordion-header">
+      <div class="accordion-header-content">
+       <h3>Content Auto-Poster</h3>
+       <p>Automatically share new blog posts to LinkedIn and Twitter.</p>
+      </div>
+      <div class="accordion-icon">
+       +
+      </div>
+     </div>
+     <div class="accordion-content">
+      <div class="workflow-visual">
+       <div class="workflow-step">
+        <div class="step-icon">
+         📰
+        </div>
+        <div class="step-label">
+         WordPress RSS
+        </div>
+       </div>
+       <div class="workflow-arrow">
+        →
+       </div>
+       <div class="workflow-step">
+        <div class="step-icon">
+         💼
+        </div>
+        <div class="step-label">
+         LinkedIn Post
+        </div>
+       </div>
+       <div class="workflow-arrow-split">
+        +
+       </div>
+       <div class="workflow-step">
+        <div class="step-icon">
+         🐦
+        </div>
+        <div class="step-label">
+         Twitter Post
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="workflow-accordion glass">
+     <div class="accordion-header">
+      <div class="accordion-header-content">
+       <h3>New Client Onboarding Kick-off</h3>
+       <p>Instantly generate contracts, Drive folders, and project boards.</p>
+      </div>
+      <div class="accordion-icon">
+       +
+      </div>
+     </div>
+     <div class="accordion-content">
+      <div class="workflow-visual">
+       <div class="workflow-step">
+        <div class="step-icon">
+         ✍️
+        </div>
+        <div class="step-label">
+         Contract Signed
+        </div>
+       </div>
+       <div class="workflow-arrow">
+        →
+       </div>
+       <div class="workflow-step">
+        <div class="step-icon">
+         📁
+        </div>
+        <div class="step-label">
+         Drive Folder
+        </div>
+       </div>
+       <div class="workflow-arrow">
+        →
+       </div>
+       <div class="workflow-step">
+        <div class="step-icon">
+         📊
+        </div>
+        <div class="step-label">
+         Asana Project
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="section-divider"></div>
+  <section id="custom" class="section">
+   <div class="glass custom-work">
+    <h2 class="section-title" id="custom-title">Custom Workflow Solutions</h2>
+    <p class="section-subtitle" id="custom-description">Every business is unique. I create tailored automation workflows that fit your specific processes, challenges, and goals.</p>
+    <div class="custom-grid">
+     <div>
+      <ul class="process-steps">
+       <li>**Share Your Process**<br>
+         Tell me about your current workflow and pain points.</li>
+       <li>**Receive a Workflow Plan**<br>
+         I'll design a custom automation blueprint tailored to your needs.</li>
+       <li>**Get a Finished Build**<br>
+         Receive a fully functional, tested solution ready to deploy.</li>
+      </ul><a href="#contact" class="btn btn-primary" style="width: 100%; text-align: center; margin-top: 2rem;">Book a Discovery Call</a>
+     </div>
+     <div style="display: flex; align-items: center; justify-content: center;">
+      <svg width="350" height="350" viewbox="0 0 350 350" xmlns="http://www.w3.org/2000/svg"><defs>
+        <lineargradient id="customGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+         <stop offset="0%" style="stop-color:#c8b3e6;stop-opacity:0.6" />
+         <stop offset="100%" style="stop-color:#9b7ec4;stop-opacity:0.4" />
+        </lineargradient>
+       </defs> <rect x="50" y="80" width="100" height="80" rx="8" fill="url(#customGrad)" opacity="0.7" /> <rect x="200" y="80" width="100" height="80" rx="8" fill="url(#customGrad)" opacity="0.7" /> <rect x="125" y="200" width="100" height="80" rx="8" fill="url(#customGrad)" opacity="0.9" /> <line x1="100" y1="160" x2="175" y2="200" stroke="#c8b3e6" stroke-width="3" /> <line x1="250" y1="160" x2="175" y2="200" stroke="#c8b3e6" stroke-width="3" /> <circle cx="100" cy="160" r="5" fill="#c8b3e6" /> <circle cx="250" cy="160" r="5" fill="#c8b3e6" /> <circle cx="175" cy="200" r="5" fill="#c8b3e6" />
+      </svg>
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="section-divider"></div>
+  <section id="how-it-works" class="section">
+   <h2 class="section-title" id="how-it-works-title">How Automation Helps Your Business</h2>
+   <div class="how-it-works-grid">
+    <div class="how-card glass">
+     <div class="how-card-icon">
+      ⚡
+     </div>
+     <h3>Save Time</h3>
+     <p>Eliminate hours of manual work each week by automating repetitive tasks and processes.</p>
+    </div>
+    <div class="how-card glass">
+     <div class="how-card-icon">
+      💰
+     </div>
+     <h3>Reduce Costs</h3>
+     <p>Lower operational expenses by minimizing human error and maximizing resource efficiency.</p>
+    </div>
+    <div class="how-card glass">
+     <div class="how-card-icon">
+      📈
+     </div>
+     <h3>Scale Faster</h3>
+     <p>Grow your business without proportionally growing your team or workload.</p>
+    </div>
+    <div class="how-card glass">
+     <div class="how-card-icon">
+      🎯
+     </div>
+     <h3>Focus on Strategy</h3>
+     <p>Free up time to focus on high-impact activities that drive revenue and growth.</p>
+    </div>
+   </div>
+  </section>
+  <div class="section-divider"></div>
+  <section id="faq" class="section">
+   <h2 class="section-title" id="faq-title">Frequently Asked Questions</h2>
+   <div class="faq-list">
+    <div class="faq-item glass">
+     <div class="faq-question">
+      What types of businesses do you work with?
+     </div>
+     <div class="faq-answer">
+      I work with businesses of all sizes across various industries, from startups to established enterprises. If you have repetitive tasks or manual processes, automation can help.
+     </div>
+    </div>
+    <div class="faq-item glass">
+     <div class="faq-question">
+      How long does it take to implement a custom workflow?
+     </div>
+     <div class="faq-answer">
+      Implementation timelines vary based on complexity, but most custom workflows are delivered within 2-4 weeks from the initial consultation to final deployment.
+     </div>
+     </div>
+    <div class="faq-item glass">
+     <div class="faq-question">
+      Do I need technical knowledge to use these workflows?
+     </div>
+     <div class="faq-answer">
+      No technical knowledge required! I design user-friendly solutions with full documentation and training to ensure your team can use them confidently.
+     </div>
+    </div>
+    <div class="faq-item glass">
+     <div class="faq-question">
+      What if I need changes after implementation?
+     </div>
+     <div class="faq-answer">
+      All projects include post-implementation support, and I offer ongoing maintenance packages to ensure your workflows continue to meet your evolving needs.
+     </div>
+    </div>
+    <div class="faq-item glass">
+     <div class="faq-question">
+      How do I get started?
+     </div>
+     <div class="faq-answer">
+      Simply book a discovery call using the button below. We'll discuss your needs, challenges, and goals to determine the best automation solution for you.
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="section-divider"></div>
+  <section id="contact" class="section">
+   <div class="glass contact-content">
+    <h2 class="section-title" id="contact-title">Get in Touch</h2>
+    <p class="section-subtitle" id="contact-subtitle">Ready to transform your business with AI automation? Let's talk about your needs.</p>
+    <form class="contact-form" id="contactForm">
+     <div class="form-group"><label for="name">Name</label> <input type="text" id="name" name="name" required>
+     </div>
+     <div class="form-group"><label for="email">Email</label> <input type="email" id="email" name="email" required>
+     </div>
+     <div class="form-group"><label for="message">Message</label> <textarea id="message" name="message" required placeholder="Tell me about your business and automation needs..."></textarea>
+     </div><button type="submit" class="btn btn-primary submit-btn">Send Message</button>
+    </form>
+    <div id="formSuccess" style="display: none; margin-top: 1.5rem; padding: 1rem; background: rgba(200, 179, 230, 0.1); border: 1px solid rgba(200, 179, 230, 0.3); border-radius: 12px; text-align: center; color: #c8b3e6;">
+     Thank you for your message! I'll get back to you soon.
+    </div>
+   </div>
+  </section>
+  
+  <script>
+    // --- 1. Accordion Functionality ---
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const accordion = header.closest('.workflow-accordion');
+        const isActive = accordion.classList.contains('active');
+
+        // Close all other accordions
+        document.querySelectorAll('.workflow-accordion').forEach(item => {
+          item.classList.remove('active');
+          item.querySelector('.accordion-content').style.maxHeight = null;
+        });
+
+        // Toggle the clicked one
+        if (!isActive) {
+          accordion.classList.add('active');
+          const content = accordion.querySelector('.accordion-content');
+          // Use scrollHeight to dynamically set the height for smooth animation
+          content.style.maxHeight = content.scrollHeight + "px"; 
+        }
+      });
+    });
+
+    // --- 2. Contact Form Submission (Placeholder) ---
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault(); 
+      this.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+      // NOTE: For actual data submission, you must integrate a service like Netlify Forms, Formspree, or a custom backend here.
+    });
+
+    // --- 3. Scroll-Based Fade-In Animations (Intersection Observer) ---
+    const fadeInElements = document.querySelectorAll('.section, .hero-content, .fade-in');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+          entry.target.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px',
+      threshold: 0.1 
+    });
+
+    fadeInElements.forEach(element => {
+      // Initialize hidden state
+      element.style.opacity = 0;
+      element.style.transform = 'translateY(30px)';
+      
+      // Start observing all sections and hero elements
+      observer.observe(element);
+    });
+
+    // Ensure the sticky nav appears immediately (since it's fixed/not scrolling in)
+    document.querySelector('.nav').style.opacity = 1;
+    document.querySelector('.nav').style.transform = 'translateY(0)';
+
+  </script>
+
+ </body>
+</html>
