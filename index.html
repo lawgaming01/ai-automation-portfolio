@@ -6,7 +6,6 @@
   <title>AI Automation Specialist Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* --- Global Styles --- */
     body {
       box-sizing: border-box;
     }
@@ -591,11 +590,94 @@
       .section-title {
         font-size: 2rem;
       }
+
+      .workflows-accordion-container {
+        gap: 1rem;
+      }
+
+      .accordion-header {
+        padding: 1.5rem;
+      }
+
+      .accordion-header-content h3 {
+        font-size: 1.25rem;
+      }
+
+      .accordion-header-content p {
+        font-size: 0.9rem;
+      }
+
+      .accordion-icon {
+        font-size: 1.5rem;
+        width: 35px;
+        height: 35px;
+      }
+
+      .workflow-visual {
+        padding: 1.5rem;
+        gap: 0.75rem;
+      }
+
+      .step-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+      }
+
+      .step-label {
+        font-size: 0.75rem;
+        max-width: 80px;
+      }
+
+      .workflow-arrow,
+      .workflow-arrow-split {
+        font-size: 1.25rem;
+      }
+
+      .hero-text,
+      .custom-work,
+      .about-content,
+      .contact-content {
+        padding: 2rem;
+      }
+
+      .process-steps li {
+        padding: 1.25rem 1.5rem 1.25rem 4rem;
+      }
+
+      .process-steps li::before {
+        left: 1rem;
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+      }
+
+      .logo {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
     }
 
     .fade-in {
       opacity: 0;
       transform: translateY(30px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-text {
+      animation-delay: 0.2s;
+    }
+
+    .hero-visual {
+      animation-delay: 0.4s;
     }
   </style>
 </head>
@@ -811,38 +893,4 @@
               <div class="step-icon">💼</div>
               <div class="step-label">LinkedIn Post</div>
             </div>
-            <div class="workflow-arrow-split">+</div>
-            <div class="workflow-step">
-              <div class="step-icon">🐦</div>
-              <div class="step-label">Twitter Post</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="workflow-accordion glass">
-        <div class="accordion-header">
-          <div class="accordion-header-content">
-            <h3>New Client Onboarding Kick-off</h3>
-            <p>Instantly generate contracts, Drive folders, and project boards.</p>
-          </div>
-          <div class="accordion-icon">+</div>
-        </div>
-        <div class="accordion-content">
-          <div class="workflow-visual">
-            <div class="workflow-step">
-              <div class="step-icon">✍️</div>
-              <div class="step-label">Contract Signed</div>
-            </div>
-            <div class="workflow-arrow">→</div>
-            <div class="workflow-step">
-              <div class="step-icon">📁</div>
-              <div class="step-label">Drive Folder</div>
-            </div>
-            <div class="workflow-arrow">→</div>
-            <div class="workflow-step">
-              <div class="step-icon">📊</div>
-              <div class="step-label">Asana Project</div>
-            </div>
-          </div>
-        </div>
+            <div class
