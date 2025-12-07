@@ -1064,22 +1064,35 @@
 
     // Contact form submission
     document.getElementById('contactForm').addEventListener('submit', function(e) {
-      
-      
-      const form = e.target;
-      const success = document.getElementById('formSuccess');
-      
-      // Show success message
-      form.style.display = 'none';
-      success.style.display = 'block';
-      
-      // Reset form after 5 seconds
-      setTimeout(() => {
-        form.reset();
-        form.style.display = 'flex';
-        success.style.display = 'none';
-      }, 5000);
-    });
+  // REMOVED: e.preventDefault(); // Don't prevent form submission
+  
+  const form = e.target;
+  const success = document.getElementById('formSuccess');
+  const submitBtn = form.querySelector('.submit-btn');
+  const originalBtnText = submitBtn.textContent;
+  
+  // Show loading state
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending...';
+  submitBtn.style.opacity = '0.7';
+  
+  // Show success message immediately (optimistic)
+  form.style.display = 'none';
+  success.style.display = 'block';
+  
+  // The form will now submit to Formspree naturally
+  // Formspree will redirect back to your page
+  
+  // Reset form after 8 seconds (gives time for Formspree to process)
+  setTimeout(() => {
+    form.reset();
+    form.style.display = 'flex';
+    success.style.display = 'none';
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalBtnText;
+    submitBtn.style.opacity = '1';
+  }, 8000);
+});
 
     // Intersection Observer for fade-in animations
     const observerOptions = {
@@ -1120,6 +1133,7 @@
   </script>
 </body>
 </html>
+
 
 
 
