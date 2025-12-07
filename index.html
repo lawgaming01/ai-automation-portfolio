@@ -118,18 +118,18 @@
     }
 
     .hero-content {
-      max-width: 1400px;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      position: relative;
-      z-index: 1;
+  max-width: 900px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
     }
 
     .hero-text {
-      padding: 3rem;
+  margin-bottom: 3rem;
+  animation-delay: 0.2s;
+}
     }
 
     .hero h1 {
@@ -155,9 +155,11 @@
     }
 
     .hero-ctas {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
+
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
     }
 
     /* Buttons */
@@ -197,24 +199,7 @@
       border-color: rgba(200, 179, 230, 0.5);
     }
 
-    .hero-visual {
-      padding: 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-image {
-      width: 100%;
-      max-width: 500px;
-      aspect-ratio: 1;
-      border-radius: 24px;
-      overflow: hidden;
-      background: linear-gradient(135deg, rgba(200, 179, 230, 0.1) 0%, rgba(155, 126, 196, 0.1) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  
 
     /* Sections */
     .section {
@@ -576,11 +561,10 @@
 
     /* Responsive Design */
     @media (max-width: 1024px) {
-      .hero-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+  .hero h1 {
+    font-size: 2.5rem;
       }
-
+    }
       .custom-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -716,57 +700,31 @@
   </nav>
 
   <section class="hero">
-    <div class="hero-bg">
-      <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:rgb(200,179,230);stop-opacity:0.2" />
-            <stop offset="100%" style="stop-color:rgb(155,126,196);stop-opacity:0.1" />
-          </linearGradient>
-        </defs>
-        <circle cx="200" cy="150" r="80" fill="url(#grad1)" />
-        <circle cx="900" cy="600" r="120" fill="url(#grad1)" />
-        <circle cx="1000" cy="200" r="60" fill="url(#grad1)" />
-        <circle cx="300" cy="650" r="90" fill="url(#grad1)" />
-      </svg>
-    </div>
-    <div class="hero-content">
-      <div class="hero-text glass fade-in">
-        <h1 id="hero-headline">Scale Your Business with <span class="hero-highlight">AI Automation</span></h1>
-        <p id="hero-subheadline">Save time, reduce costs, and unlock growth with intelligent automation workflows tailored to your business needs.</p>
-        <div class="hero-ctas">
-          <a href="#workflows" class="btn btn-primary">View Ready Automation Workflows</a>
-          <a href="#contact" class="btn btn-secondary">Book a Discovery Call for Custom Workflows</a>
-        </div>
-      </div>
-      <div class="hero-visual fade-in">
-        <div class="hero-image glass">
-          <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="techGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#c8b3e6;stop-opacity:0.8" />
-                <stop offset="100%" style="stop-color:#9b7ec4;stop-opacity:0.6" />
-              </linearGradient>
-            </defs>
-            <g>
-              <circle cx="150" cy="150" r="100" fill="none" stroke="url(#techGrad)" stroke-width="2" opacity="0.3" />
-              <circle cx="150" cy="150" r="70" fill="none" stroke="url(#techGrad)" stroke-width="2" opacity="0.5" />
-              <circle cx="150" cy="150" r="40" fill="none" stroke="url(#techGrad)" stroke-width="2" opacity="0.7" />
-              <circle cx="150" cy="150" r="8" fill="url(#techGrad)" />
-              <line x1="150" y1="50" x2="150" y2="90" stroke="url(#techGrad)" stroke-width="2" />
-              <circle cx="150" cy="40" r="6" fill="url(#techGrad)" />
-              <line x1="235" y1="150" x2="195" y2="150" stroke="url(#techGrad)" stroke-width="2" />
-              <circle cx="245" cy="150" r="6" fill="url(#techGrad)" />
-              <line x1="150" y1="250" x2="150" y2="210" stroke="url(#techGrad)" stroke-width="2" />
-              <circle cx="150" cy="260" r="6" fill="url(#techGrad)" />
-              <line x1="65" y1="150" x2="105" y2="150" stroke="url(#techGrad)" stroke-width="2" />
-              <circle cx="55" cy="150" r="6" fill="url(#techGrad)" />
-            </g>
-          </svg>
-        </div>
+  <div class="hero-bg">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:rgb(200,179,230);stop-opacity:0.2" />
+          <stop offset="100%" style="stop-color:rgb(155,126,196);stop-opacity:0.1" />
+        </linearGradient>
+      </defs>
+      <circle cx="200" cy="150" r="80" fill="url(#grad1)" />
+      <circle cx="900" cy="600" r="120" fill="url(#grad1)" />
+      <circle cx="1000" cy="200" r="60" fill="url(#grad1)" />
+      <circle cx="300" cy="650" r="90" fill="url(#grad1)" />
+    </svg>
+  </div>
+  <div class="hero-content">
+    <div class="hero-text fade-in">
+      <h1 id="hero-headline">Scale Your Business with <span class="hero-highlight">AI Automation</span></h1>
+      <p id="hero-subheadline">Save time, reduce costs, and unlock growth with intelligent automation workflows tailored to your business needs.</p>
+      <div class="hero-ctas">
+        <a href="#workflows" class="btn btn-primary">View Ready Automation Workflows</a>
+        <a href="#contact" class="btn btn-secondary">Book a Discovery Call for Custom Workflows</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <div class="section-divider"></div>
 
@@ -1162,3 +1120,4 @@
   </script>
 </body>
 </html>
+
