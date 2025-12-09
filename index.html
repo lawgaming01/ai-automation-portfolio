@@ -7,6 +7,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Calendly widget -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Reset & Base Styles */
         * {
@@ -143,8 +148,14 @@
         .hero-subtitle {
             font-size: 1.25rem;
             color: #d1d5db;
-            margin-bottom: 3rem;
+            margin-bottom: 1.5rem;
             line-height: 1.8;
+        }
+
+        .hero-tagline {
+            font-size: 1.125rem;
+            color: #9ca3af;
+            margin-bottom: 3rem;
         }
 
         .hero-ctas {
@@ -262,6 +273,18 @@
             line-height: 1.7;
         }
 
+        .workflow-note {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 20px;
+            color: #8b5cf6;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
         /* Before & After */
         .comparison-container {
             display: grid;
@@ -319,7 +342,7 @@
             line-height: 1;
         }
 
-        /* Why Work With Me */
+        /* Why Work With Me - UPDATED FOR BALANCED LAYOUT */
         .reasons-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -333,20 +356,45 @@
             border-radius: 16px;
             padding: 1.5rem;
             display: flex;
-            align-items: flex-start;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .reason-header {
+            display: flex;
+            align-items: center;
             gap: 1rem;
+            margin-bottom: 1rem;
         }
 
         .reason-icon {
             color: #8b5cf6;
             font-size: 1.5rem;
             flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Services */
+        .reason-title {
+            font-weight: 600;
+            color: white;
+            font-size: 1.125rem;
+        }
+
+        .reason-text {
+            color: #9ca3af;
+            line-height: 1.7;
+        }
+
+        /* Services - UPDATED FOR BALANCED ROWS */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-bottom: 4rem;
         }
@@ -358,6 +406,9 @@
             padding: 2rem;
             text-align: center;
             transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .service-card:hover {
@@ -496,70 +547,216 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Tools */
-        .tools-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 4rem;
+        /* Pricing Teaser */
+        .pricing-teaser {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), transparent);
+            border-radius: 20px;
+            margin: 3rem auto;
+            max-width: 800px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
         }
 
-        .tool-badge {
+        .pricing-teaser h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .pricing-teaser p {
+            font-size: 1.25rem;
+            color: #d1d5db;
+        }
+
+        /* Tools - UPDATED WITH ICONS AND MARQUEE */
+        .tools-section {
+            overflow: hidden;
+            position: relative;
+            padding: 3rem 0;
+            margin: 2rem 0 4rem;
+        }
+
+        .tools-section::before,
+        .tools-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .tools-section::before {
+            left: 0;
+            background: linear-gradient(to right, rgba(10, 10, 10, 1), rgba(10, 10, 10, 0));
+        }
+
+        .tools-section::after {
+            right: 0;
+            background: linear-gradient(to left, rgba(10, 10, 10, 1), rgba(10, 10, 10, 0));
+        }
+
+        .tools-marquee {
+            display: flex;
+            animation: marquee 30s linear infinite;
+            gap: 3rem;
+            padding: 0 2rem;
+        }
+
+        .tools-marquee:hover {
+            animation-play-state: paused;
+        }
+
+        .tool-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            min-width: 100px;
+        }
+
+        .tool-icon {
+            width: 70px;
+            height: 70px;
             background: rgba(139, 92, 246, 0.1);
             border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 50px;
-            padding: 0.75rem 1.5rem;
-            color: #d1d5db;
-            font-weight: 500;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #8b5cf6;
             transition: all 0.3s ease;
         }
 
-        .tool-badge:hover {
-            background: rgba(139, 92, 246, 0.2);
-            transform: translateY(-2px);
+        .tool-item:nth-child(even) .tool-icon {
+            transform: translateY(-10px);
         }
 
-        /* Final CTA */
-        .final-cta {
+        .tool-item:nth-child(odd) .tool-icon {
+            transform: translateY(10px);
+        }
+
+        .tool-name {
+            color: #9ca3af;
+            font-size: 0.875rem;
+            font-weight: 500;
             text-align: center;
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), transparent);
-            border-radius: 24px;
-            margin: 4rem auto;
-            max-width: 1200px;
         }
 
-        .final-cta h2 {
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Final Funnel Area - UPDATED */
+        .funnel-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .funnel-title {
             font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: white;
         }
 
-        .final-cta p {
-            font-size: 1.25rem;
-            color: #d1d5db;
-            margin-bottom: 3rem;
+        .funnel-subtitle {
+            font-size: 1.125rem;
+            color: #9ca3af;
+            text-align: center;
+            margin-bottom: 4rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+        .funnel-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
         }
 
-        /* Contact Form */
-        .contact-form-container {
-            max-width: 600px;
-            margin: 0 auto;
+        @media (max-width: 1024px) {
+            .funnel-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        .funnel-option {
             background: rgba(30, 30, 40, 0.5);
             border: 1px solid rgba(139, 92, 246, 0.2);
             border-radius: 20px;
             padding: 3rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .funnel-option.primary {
+            border-color: rgba(139, 92, 246, 0.5);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), transparent);
+        }
+
+        .option-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .option-title.primary {
+            color: #8b5cf6;
+        }
+
+        .option-description {
+            color: #9ca3af;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+
+        .option-cta {
+            margin-top: auto;
+        }
+
+        .calendly-btn {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
+            padding: 1.25rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.125rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        .calendly-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Contact Form */
+        .contact-form-container {
+            width: 100%;
         }
 
         .form-group {
@@ -644,9 +841,13 @@
                 grid-template-columns: 1fr;
             }
             
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
+            .funnel-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .funnel-option {
+                padding: 2rem;
             }
         }
 
@@ -717,7 +918,7 @@
                 <a href="#process">Process</a>
                 <a href="#about">About</a>
                 <a href="#faq">FAQ</a>
-                <a href="#contact" class="nav-cta">Book Discovery Call</a>
+                <a href="#funnel" class="nav-cta">Start Automating</a>
             </div>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
@@ -730,7 +931,7 @@
             <a href="#process">Process</a>
             <a href="#about">About</a>
             <a href="#faq">FAQ</a>
-            <a href="#contact" class="nav-cta">Book Discovery Call</a>
+            <a href="#funnel" class="nav-cta">Start Automating</a>
         </div>
     </nav>
 
@@ -740,10 +941,11 @@
         <div class="hero-content">
             <h1 class="fade-in">Automate Your Business. <span class="fade-in delay-1">Save Hours Every Week.</span></h1>
             <p class="hero-subtitle fade-in delay-2">
-                I help founders and small teams eliminate repetitive work using AI-powered workflows that streamline operations, reduce costs, and scale with your business.
+                I help founders and small teams remove repetitive work with simple AI workflows that cut time spent on daily tasks.
             </p>
+            <p class="hero-tagline fade-in delay-3">Book a free call or explore starter automations.</p>
             <div class="hero-ctas fade-in delay-3">
-                <a href="#contact" class="btn-primary">Book a Free Discovery Call</a>
+                <a href="#funnel" class="btn-primary">Book a Discovery Call</a>
                 <a href="#workflows" class="btn-secondary">View Automations</a>
             </div>
         </div>
@@ -752,186 +954,217 @@
     <!-- Popular Workflows -->
     <section class="section" id="workflows">
         <h2 class="section-title">Popular Workflows</h2>
-        <p class="section-subtitle">Show the value immediately with concrete examples</p>
         
         <div class="workflows-grid">
             <div class="workflow-card fade-in">
                 <div class="workflow-icon">📊</div>
                 <h3 class="workflow-title">Lead Capture Automation</h3>
-                <p class="workflow-description">Automatically collect inquiries, qualify leads, and log them into your CRM or Google Sheets with follow-up reminders.</p>
+                <p class="workflow-description">Collect inquiries, qualify leads, and log them into your CRM or Sheets with reminders for follow-ups.</p>
             </div>
             
             <div class="workflow-card fade-in delay-1">
                 <div class="workflow-icon">📧</div>
-                <h3 class="workflow-title">AI Email Response System</h3>
-                <p class="workflow-description">Reads incoming messages, drafts professional replies, and routes them for review before sending.</p>
+                <h3 class="workflow-title">AI Email Reply Automation</h3>
+                <p class="workflow-description">Read messages, draft responses, and route them for review.</p>
+                <span class="workflow-note">Great for your first starter build</span>
             </div>
             
             <div class="workflow-card fade-in delay-2">
                 <div class="workflow-icon">💰</div>
-                <h3 class="workflow-title">Invoice & Payment Workflow</h3>
-                <p class="workflow-description">Generate invoices, send payment links, track status, and notify you when payments arrive.</p>
+                <h3 class="workflow-title">Invoice and Payment Workflow</h3>
+                <p class="workflow-description">Generate invoices, send payment links, and track status.</p>
             </div>
             
             <div class="workflow-card fade-in delay-1">
                 <div class="workflow-icon">👥</div>
                 <h3 class="workflow-title">Onboarding Automation</h3>
-                <p class="workflow-description">Send welcome emails, create accounts, assign tasks, and organize documents automatically.</p>
+                <p class="workflow-description">Send welcome messages, create accounts, and assign tasks.</p>
             </div>
             
             <div class="workflow-card fade-in delay-2">
                 <div class="workflow-icon">🔄</div>
-                <h3 class="workflow-title">CRM Sync & Data Cleanup</h3>
-                <p class="workflow-description">Sync customer data across tools, remove duplicates, and keep information accurate and organized.</p>
+                <h3 class="workflow-title">CRM Sync and Data Cleanup</h3>
+                <p class="workflow-description">Keep contact data accurate across your tools.</p>
             </div>
             
             <div class="workflow-card fade-in delay-1">
                 <div class="workflow-icon">📢</div>
                 <h3 class="workflow-title">Content Automation</h3>
-                <p class="workflow-description">Auto-generate summaries, distribute content to email or social channels, and organize files using AI.</p>
+                <p class="workflow-description">Create summaries, schedule posts, and organize files.</p>
             </div>
             
             <div class="workflow-card fade-in delay-2">
                 <div class="workflow-icon">📝</div>
                 <h3 class="workflow-title">Form to Database Automation</h3>
-                <p class="workflow-description">Receive form responses, extract relevant information, apply categorization, and store them in Sheets or Notion.</p>
+                <p class="workflow-description">Send form data to Sheets or Notion with tagging and sorting.</p>
             </div>
             
             <div class="workflow-card fade-in delay-1">
                 <div class="workflow-icon">⚡</div>
-                <h3 class="workflow-title">Custom Business Workflows</h3>
-                <p class="workflow-description">If your team does it manually today, I can likely automate it.</p>
+                <h3 class="workflow-title">Custom Workflows</h3>
+                <p class="workflow-description">If your team does it by hand, we can explore ways to automate it.</p>
             </div>
         </div>
         
         <div style="text-align: center; margin-top: 3rem;">
-            <a href="#contact" class="btn-primary">Let's Automate Your Workflow</a>
+            <a href="#funnel" class="btn-primary">Let's Automate Your Workflow</a>
         </div>
     </section>
 
     <!-- Before & After Examples -->
     <section class="section" id="before-after">
-        <h2 class="section-title">Before & After Examples</h2>
-        <p class="section-subtitle">Social proof through transformation</p>
+        <h2 class="section-title">Before and After</h2>
+        <p class="section-subtitle">Email Handling</p>
         
         <div class="comparison-container">
             <div class="comparison-box fade-in">
-                <h3 class="comparison-title before">✕ Before: Email Handling</h3>
+                <h3 class="comparison-title before">Before</h3>
                 <ul class="comparison-list">
-                    <li>Manually reading emails</li>
-                    <li>Copy-pasting details into Sheets</li>
-                    <li>Writing repetitive responses</li>
-                    <li>Forgetting follow-ups</li>
+                    <li>Reading messages</li>
+                    <li>Copying details into a sheet</li>
+                    <li>Writing the same reply</li>
+                    <li>Missing reminders</li>
                 </ul>
             </div>
             
             <div class="comparison-box fade-in delay-1">
-                <h3 class="comparison-title after">✓ After: Email Automation</h3>
+                <h3 class="comparison-title after">After</h3>
                 <ul class="comparison-list">
-                    <li>Auto-read + AI categorization</li>
-                    <li>Auto-log to Sheets/CRM</li>
-                    <li>Auto-draft replies for review</li>
-                    <li>Auto-follow-up reminders</li>
+                    <li>Auto-read and AI tagging</li>
+                    <li>Auto-log to CRM or Sheets</li>
+                    <li>Auto-draft replies</li>
+                    <li>Auto-follow-ups</li>
+                </ul>
+            </div>
+        </div>
+        
+        <p class="section-subtitle" style="margin-top: 4rem;">Onboarding</p>
+        
+        <div class="comparison-container">
+            <div class="comparison-box fade-in">
+                <h3 class="comparison-title before">Before</h3>
+                <ul class="comparison-list">
+                    <li>Manual emails</li>
+                    <li>Manual account setup</li>
+                    <li>Manual file sorting</li>
+                    <li>Manual task assignment</li>
+                </ul>
+            </div>
+            
+            <div class="comparison-box fade-in delay-1">
+                <h3 class="comparison-title after">After</h3>
+                <ul class="comparison-list">
+                    <li>Auto-send welcome steps</li>
+                    <li>Auto-create accounts</li>
+                    <li>Auto-organize files</li>
+                    <li>Auto-assign tasks</li>
                 </ul>
             </div>
         </div>
         
         <div style="text-align: center; margin-top: 3rem;">
-            <a href="#contact" class="btn-primary">See This in Your Business</a>
+            <a href="#funnel" class="btn-primary">See This in Your Business</a>
         </div>
     </section>
 
-    <!-- Why Work With Me -->
+    <!-- Why Work With Me - UPDATED -->
     <section class="section" id="why">
         <h2 class="section-title">Why Work With Me</h2>
-        <p class="section-subtitle">Credibility and differentiation</p>
         
         <div class="reasons-grid">
             <div class="reason-item fade-in">
-                <div class="reason-icon">✓</div>
-                <div>5+ years in operations & procurement with a 100% compliance record</div>
+                <div class="reason-header">
+                    <div class="reason-icon">✓</div>
+                    <div class="reason-title">Clear process</div>
+                </div>
+                <div class="reason-text">You get a simple plan for your workflow before anything is built.</div>
             </div>
             
             <div class="reason-item fade-in delay-1">
-                <div class="reason-icon">✓</div>
-                <div>Background in UX design ensures workflows that are simple, usable, and optimized</div>
+                <div class="reason-header">
+                    <div class="reason-icon">⚡</div>
+                    <div class="reason-title">Starter-friendly approach</div>
+                </div>
+                <div class="reason-text">I create small, practical builds you can use right away.</div>
             </div>
             
             <div class="reason-item fade-in delay-2">
-                <div class="reason-icon">✓</div>
-                <div>Proven ability to cut manual tasks by 40–80%</div>
+                <div class="reason-header">
+                    <div class="reason-icon">🚀</div>
+                    <div class="reason-title">Fast turnaround</div>
+                </div>
+                <div class="reason-text">Most workflows take 2–7 days.</div>
             </div>
             
             <div class="reason-item fade-in">
-                <div class="reason-icon">✓</div>
-                <div>Fast delivery: most workflows built within 2–7 days</div>
+                <div class="reason-header">
+                    <div class="reason-icon">🏛️</div>
+                    <div class="reason-title">Strong background</div>
+                </div>
+                <div class="reason-text">Five years in operations and procurement with full compliance and tight process control.</div>
             </div>
             
             <div class="reason-item fade-in delay-1">
-                <div class="reason-icon">✓</div>
-                <div>Clear communication and documentation for every project</div>
+                <div class="reason-header">
+                    <div class="reason-icon">🎨</div>
+                    <div class="reason-title">UX mindset</div>
+                </div>
+                <div class="reason-text">I design flows that are easy to use and simple to follow.</div>
             </div>
             
             <div class="reason-item fade-in delay-2">
-                <div class="reason-icon">✓</div>
-                <div>No long-term contracts or retainers</div>
-            </div>
-            
-            <div class="reason-item fade-in">
-                <div class="reason-icon">✓</div>
-                <div>You own all workflows I build for you</div>
+                <div class="reason-header">
+                    <div class="reason-icon">🔐</div>
+                    <div class="reason-title">You keep everything</div>
+                </div>
+                <div class="reason-text">All workflows stay under your ownership.</div>
             </div>
         </div>
         
         <div style="text-align: center; margin-top: 3rem;">
-            <a href="#contact" class="btn-primary">Start Your Automation</a>
+            <a href="#funnel" class="btn-primary">Start Your Automation</a>
         </div>
     </section>
 
-    <!-- What I Do - Services -->
+    <!-- What I Do - UPDATED -->
     <section class="section" id="services">
         <h2 class="section-title">What I Do</h2>
-        <p class="section-subtitle">Comprehensive service menu for those who want details</p>
-        
-        <p style="text-align: center; color: #d1d5db; max-width: 800px; margin: 0 auto 3rem; line-height: 1.8;">
-            I design and build practical, reliable automations that remove manual work from your daily operations. Here's how I can help your business run smoother:
-        </p>
         
         <div class="services-grid">
             <div class="service-card fade-in">
                 <div class="service-icon">👥</div>
-                <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Lead & CRM Automation</h3>
-                <p style="color: #9ca3af;">Streamline lead capture, qualification, and CRM management</p>
+                <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Lead and CRM automation</h3>
+                <p style="color: #9ca3af;">Automate lead capture and CRM management</p>
             </div>
             
             <div class="service-card fade-in delay-1">
                 <div class="service-icon">📧</div>
-                <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Email & Communication Automation</h3>
-                <p style="color: #9ca3af;">Automate email responses, scheduling, and team communication</p>
+                <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Email and communication automation</h3>
+                <p style="color: #9ca3af;">Automate replies and team coordination</p>
             </div>
             
             <div class="service-card fade-in delay-2">
                 <div class="service-icon">📁</div>
-                <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Admin & Operations Automation</h3>
-                <p style="color: #9ca3af;">Automate administrative tasks, document processing, and operations</p>
+                <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Admin and operations automation</h3>
+                <p style="color: #9ca3af;">Streamline admin tasks and document handling</p>
             </div>
             
             <div class="service-card fade-in">
                 <div class="service-icon">📢</div>
-                <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Content & Social Automation</h3>
-                <p style="color: #9ca3af;">Automate content distribution, social media, and content management</p>
+                <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Content and social automation</h3>
+                <p style="color: #9ca3af;">Automate posting and content organization</p>
             </div>
             
             <div class="service-card fade-in delay-1">
                 <div class="service-icon">📊</div>
-                <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Data Processing & Reporting Automation</h3>
-                <p style="color: #9ca3af;">Automate data collection, processing, and report generation</p>
+                <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Data processing and reporting</h3>
+                <p style="color: #9ca3af;">Automate data collection and report creation</p>
             </div>
             
             <div class="service-card fade-in delay-2">
                 <div class="service-icon">⚡</div>
-                <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Custom Workflows Tailored to Your Tools</h3>
-                <p style="color: #9ca3af;">Build custom automations specific to your existing tech stack</p>
+                <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Simple one-off builds for small teams</h3>
+                <p style="color: #9ca3af;">Custom workflows tailored to your specific needs</p>
             </div>
         </div>
     </section>
@@ -939,7 +1172,6 @@
     <!-- FAQ -->
     <section class="section" id="faq">
         <h2 class="section-title">FAQ</h2>
-        <p class="section-subtitle">Address objections early</p>
         
         <div class="faq-container">
             <div class="faq-item fade-in">
@@ -948,7 +1180,7 @@
                     <span>+</span>
                 </div>
                 <div class="faq-answer">
-                    Most projects take 2–7 days depending on complexity.
+                    Most take 2–7 days.
                 </div>
             </div>
             
@@ -958,7 +1190,7 @@
                     <span>+</span>
                 </div>
                 <div class="faq-answer">
-                    Not always. I help you choose the most cost-efficient setup based on your needs.
+                    Not always. I help you choose the most cost-friendly setup.
                 </div>
             </div>
             
@@ -968,54 +1200,53 @@
                     <span>+</span>
                 </div>
                 <div class="faq-answer">
-                    Yes. I provide post-launch assistance to ensure everything works perfectly.
+                    Yes. I offer post-launch help to make sure everything runs well.
                 </div>
             </div>
             
             <div class="faq-item fade-in">
                 <div class="faq-question">
-                    Can you automate custom or unusual workflows?
+                    Can you automate unusual workflows?
                     <span>+</span>
                 </div>
                 <div class="faq-answer">
-                    Yes. If it's repetitive, rule-based, or tool-based, I can likely automate it.
+                    If it repeats or follows steps, we can explore it.
                 </div>
             </div>
         </div>
         
         <div style="text-align: center; margin-top: 3rem;">
-            <a href="#contact" class="btn-primary">Ready to Get Started?</a>
+            <a href="#funnel" class="btn-primary">Ready to Get Started?</a>
         </div>
     </section>
 
     <!-- My Process -->
     <section class="section" id="process">
         <h2 class="section-title">My Process</h2>
-        <p class="section-subtitle">Clear expectations and professionalism</p>
         
         <div class="process-steps">
             <div class="process-step fade-in">
                 <div class="step-number">1</div>
                 <h3 class="step-title">Discovery Call</h3>
-                <p class="step-description">We discuss your workflow, goals, and pain points.</p>
+                <p class="step-description">We talk about your workflow and your goals.</p>
             </div>
             
             <div class="process-step fade-in delay-1">
                 <div class="step-number">2</div>
-                <h3 class="step-title">Workflow Mapping</h3>
-                <p class="step-description">I map out the automation steps, integrations, and logic.</p>
+                <h3 class="step-title">Workflow Map</h3>
+                <p class="step-description">I outline the steps and logic.</p>
             </div>
             
             <div class="process-step fade-in delay-2">
                 <div class="step-number">3</div>
-                <h3 class="step-title">Build & Integrate</h3>
-                <p class="step-description">I create the workflow, connect tools, add logic, and test thoroughly.</p>
+                <h3 class="step-title">Build and Connect</h3>
+                <p class="step-description">I create the workflow, set the rules, and test it.</p>
             </div>
             
             <div class="process-step fade-in">
                 <div class="step-number">4</div>
-                <h3 class="step-title">Deploy & Support</h3>
-                <p class="step-description">You get a ready-to-use automation plus post-launch assistance to ensure everything runs smoothly.</p>
+                <h3 class="step-title">Launch and Support</h3>
+                <p class="step-description">You get a working automation with help after launch.</p>
             </div>
         </div>
     </section>
@@ -1023,84 +1254,262 @@
     <!-- About Me -->
     <section class="section" id="about">
         <h2 class="section-title">About Me</h2>
-        <p class="section-subtitle">Personal connection and deeper credibility</p>
         
         <div class="about-content">
-            <p>I'm Marc Lawrence Salaguban, a UX Designer and Automation Specialist with a strong background in government operations, procurement management, and digital product design.</p>
+            <p>I'm Marc Lawrence Salaguban, a UX designer and automation builder with experience in operations, procurement, and product work.</p>
             
-            <p>I began my career managing complex procurement workflows for government agencies, where accuracy and efficiency were essential. I reduced procurement cycle times from over 30 days to just 7, maintained 100% compliance, and streamlined processes for multiple departments.</p>
+            <p>I started by managing government workflows where accuracy mattered. I later moved into UX work across healthcare, finance, and education. I used automation to speed up research, communication, and admin tasks.</p>
             
-            <p>Later, I transitioned into UX design and digital operations, working across healthcare, fintech, Web3, and education. I designed platforms that improved conversion rates, user experience, and team efficiency. I increasingly relied on automation to speed up design, research, and backend operations.</p>
+            <p>Now I help small teams and solo founders save time with simple AI workflows. I build with Zapier, Make, n8n, Google Workspace, Notion, webhooks, and scheduling tools.</p>
             
-            <p>Today, I combine operations thinking, UX expertise, and advanced automation tools to help businesses eliminate bottlenecks and work faster with fewer errors. I build workflows using Zapier, Make, n8n, Google Workspace, Notion, and AI systems that handle communication, data processing, scheduling, reporting, and more.</p>
-            
-            <p style="font-weight: 600; color: white;">If you're ready to remove repetitive tasks and modernize your business operations, I can help you deploy the right automation fast and without unnecessary complexity.</p>
+            <p style="font-weight: 600; color: white;">If you want to remove manual steps without complex setups, I can help you start with something small and useful.</p>
         </div>
     </section>
 
-    <!-- Tools I Use -->
+    <!-- Pricing Teaser -->
+    <div class="pricing-teaser fade-in">
+        <h3>Start automating tasks for as low as $15.</h3>
+        <p>Simple pricing for practical automations that save you time.</p>
+    </div>
+
+    <!-- Tools I Use - UPDATED WITH ICONS AND MARQUEE -->
     <section class="section" id="tools">
         <h2 class="section-title">Tools I Use</h2>
-        <p class="section-subtitle">Trust indicators</p>
         
-        <div class="tools-grid">
-            <span class="tool-badge">Zapier</span>
-            <span class="tool-badge">Make</span>
-            <span class="tool-badge">n8n</span>
-            <span class="tool-badge">Google Workspace</span>
-            <span class="tool-badge">Sheets</span>
-            <span class="tool-badge">Docs</span>
-            <span class="tool-badge">Gmail</span>
-            <span class="tool-badge">Notion</span>
-            <span class="tool-badge">APIs</span>
-            <span class="tool-badge">Webhooks</span>
-            <span class="tool-badge">OpenAI</span>
-            <span class="tool-badge">Calendly</span>
-            <span class="tool-badge">Stripe</span>
-            <span class="tool-badge">WhatsApp Business</span>
+        <div class="tools-section">
+            <div class="tools-marquee" id="toolsMarquee">
+                <!-- First set of tools -->
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="tool-name">Zapier</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="tool-name">Make</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="tool-name">n8n</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-google"></i>
+                    </div>
+                    <div class="tool-name">Google Workspace</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    <div class="tool-name">Sheets</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="tool-name">Docs</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="tool-name">Gmail</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-sticky-note"></i>
+                    </div>
+                    <div class="tool-name">Notion</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="tool-name">APIs</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="tool-name">Webhooks</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="tool-name">OpenAI</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="tool-name">Calendly</div>
+                </div>
+                
+                <!-- Duplicate set for seamless looping -->
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="tool-name">Zapier</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="tool-name">Make</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="tool-name">n8n</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-google"></i>
+                    </div>
+                    <div class="tool-name">Google Workspace</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    <div class="tool-name">Sheets</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="tool-name">Docs</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="tool-name">Gmail</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-sticky-note"></i>
+                    </div>
+                    <div class="tool-name">Notion</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="tool-name">APIs</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="tool-name">Webhooks</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="tool-name">OpenAI</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="tool-name">Calendly</div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="final-cta">
-        <h2>Ready to Remove Repetitive Work?</h2>
-        <p>Let's automate your operations and free up your time.</p>
+    <!-- Final Funnel Area - UPDATED -->
+    <section class="funnel-section" id="funnel">
+        <h2 class="funnel-title">Start Automating Your Work</h2>
+        <p class="funnel-subtitle">Choose how you'd like to get started</p>
         
-        <div class="cta-buttons">
-            <a href="#contact" class="btn-primary" style="font-size: 1.125rem; padding: 1.25rem 2.5rem;">Book a Free Discovery Call</a>
-            <a href="#contact" class="btn-secondary" style="font-size: 1.125rem; padding: 1.25rem 2.5rem;">Request a Custom Automation</a>
-        </div>
-    </section>
-
-    <!-- Contact Form -->
-    <section class="section" id="contact">
-        <h2 class="section-title">Get in Touch</h2>
-        <p class="section-subtitle">Ready to transform your business with AI automation? Let's talk about your needs.</p>
-        
-        <div class="contact-form-container">
-            <form id="contactForm" class="fade-in">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
+        <div class="funnel-container">
+            <!-- Primary: Calendly -->
+            <div class="funnel-option primary fade-in">
+                <div class="option-title primary">
+                    <i class="fas fa-calendar-check"></i>
+                    Discovery Call (Primary)
                 </div>
-                
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Talk About the Workflow You Want to Fix</h3>
+                <p class="option-description">
+                    Book a call if you want help spotting tasks you can automate or if you already have one workflow in mind.
+                    You get clear steps and a simple plan.
+                </p>
+                <div class="option-cta">
+                    <button class="calendly-btn" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/marcaiworks'});">
+                        Book a Discovery Call
+                    </button>
                 </div>
-                
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required placeholder="Tell me about your business and automation needs..."></textarea>
-                </div>
-                
-                <button type="submit" class="btn-primary" style="width: 100%; padding: 1.25rem; font-size: 1.125rem;">
-                    Send Message
-                </button>
-            </form>
+            </div>
             
-            <div id="formSuccess" style="display: none; margin-top: 2rem; padding: 1.5rem; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 12px; text-align: center;">
-                <p style="color: #4ade80; font-weight: 600; font-size: 1.125rem;">Thank you for your message! I'll get back to you soon.</p>
+            <!-- Secondary: Contact Form -->
+            <div class="funnel-option fade-in delay-1">
+                <div class="option-title">
+                    <i class="fas fa-envelope"></i>
+                    Contact Form (Secondary)
+                </div>
+                <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Send a Question Before Booking</h3>
+                <p class="option-description">
+                    Use the form if you want to ask something first.
+                    Tell me about your setup or what slows you down.
+                    I'll reply with options you can explore.
+                </p>
+                <div class="option-cta">
+                    <form id="contactForm" class="contact-form-container">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required placeholder="Your Name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required placeholder="Your Email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="message" name="message" required placeholder="Tell me about your setup or what you'd like to automate..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="calendly-btn" style="background: rgba(139, 92, 246, 0.8);">
+                            Send a Message
+                        </button>
+                    </form>
+                    
+                    <div id="formSuccess" style="display: none; margin-top: 1.5rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 12px; text-align: center;">
+                        <p style="color: #4ade80; font-weight: 600;">Thank you for your message! I'll get back to you soon.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1284,6 +1693,13 @@
             }
         `;
         document.head.appendChild(style);
+        
+        // Tools marquee duplication for infinite loop
+        window.addEventListener('load', () => {
+            const marquee = document.getElementById('toolsMarquee');
+            const tools = marquee.innerHTML;
+            marquee.innerHTML += tools; // Duplicate for seamless loop
+        });
     </script>
 </body>
 </html>
