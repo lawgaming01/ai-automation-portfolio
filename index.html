@@ -68,27 +68,31 @@
             align-items: center;
         }
 
-        .nav-links a {
-            color: #d1d5db;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            font-size: 0.95rem;
-        }
+       .nav-links a {
+    color: #d1d5db;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.nav-links .nav-cta {
+    color: white;
+}
 
         .nav-links a:hover {
             color: #8b5cf6;
         }
 
         .nav-cta {
-            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-        }
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
 
         .nav-cta:hover {
             transform: translateY(-2px);
@@ -343,12 +347,24 @@
         }
 
         /* Why Work With Me - UPDATED FOR BALANCED LAYOUT */
-        .reasons-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 4rem;
-        }
+       .reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+@media (max-width: 1024px) {
+    .reasons-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .reasons-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
         .reason-item {
             background: rgba(30, 30, 40, 0.5);
@@ -393,11 +409,23 @@
 
         /* Services - UPDATED FOR BALANCED ROWS */
         .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
         .service-card {
             background: rgba(30, 30, 40, 0.5);
@@ -536,12 +564,13 @@
         }
 
         /* About */
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto 4rem;
-            color: #d1d5db;
-            line-height: 1.8;
-        }
+      .about-content {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    color: #d1d5db;
+    line-height: 1.8;
+    text-align: justify;
+}
 
         .about-content p {
             margin-bottom: 1.5rem;
@@ -722,12 +751,12 @@
             color: #8b5cf6;
         }
 
-        .option-description {
-            color: #9ca3af;
-            margin-bottom: 2rem;
-            line-height: 1.7;
-            flex-grow: 1;
-        }
+     .option-description {
+    color: #9ca3af;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    flex-grow: 1;
+}
 
         .option-cta {
             margin-top: auto;
@@ -910,7 +939,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">Automation Portfolio</div>
+            <div class="logo">Marc AI Works</div>
             
             <div class="nav-links">
                 <a href="#services">Services</a>
@@ -1461,7 +1490,7 @@
             <div class="funnel-option primary fade-in">
                 <div class="option-title primary">
                     <i class="fas fa-calendar-check"></i>
-                    Discovery Call (Primary)
+                    Discovery Call
                 </div>
                 <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Talk About the Workflow You Want to Fix</h3>
                 <p class="option-description">
@@ -1479,7 +1508,7 @@
             <div class="funnel-option fade-in delay-1">
                 <div class="option-title">
                     <i class="fas fa-envelope"></i>
-                    Contact Form (Secondary)
+                    Contact Form
                 </div>
                 <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Send a Question Before Booking</h3>
                 <p class="option-description">
@@ -1703,3 +1732,4 @@
     </script>
 </body>
 </html>
+
