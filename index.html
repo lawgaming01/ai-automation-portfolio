@@ -1573,86 +1573,78 @@
             });
         });
         
-        // Form submission to BOTH Formspree AND Make.com
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    const form = e.target;
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    const successMessage = document.getElementById('formSuccess');
-    
-    // Get form values
-    const formData = {
-        name: form.name.value,
-        email: form.email.value,
-        message: form.message.value,
-        timestamp: new Date().toISOString(),
-        source: 'Portfolio Website'
-    };
-    
-    // Show loading state
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
-    
-    try {
-        // Send to BOTH services simultaneously
-        const [makeResponse, formspreeResponse] = await Promise.allSettled([
-            // 1. Send to Make.com webhook
-            fetch('https://hook.us2.make.com/aqd14h67ef81dmb60fywaavjjlpxb7o4', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            }),
+                // Form submission to BOTH Formspree AND Make.com
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
             
-            // 2. Send to Formspree (for email backup)
-            fetch('https://formspree.io/f/mvgebodk', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    name: formData.name,
-                    email: formData.email,
-                    message: formData.message,
-                    _subject: `New Contact: ${formData.name}`
-                })
-            })
-        ]);
-        
-        // Check if at least one succeeded
-        const makeSuccess = makeResponse.status === 'fulfilled' && makeResponse.value.ok;
-        const formspreeSuccess = formspreeResponse.status === 'fulfilled' && formspreeResponse.value.ok;
-        
-        if (makeSuccess || formspreeSuccess) {
-            // Show success message
-            form.style.display = 'none';
-            successMessage.style.display = 'block';
+            const form = e.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            const successMessage = document.getElementById('formSuccess');
             
-            // Log which services worked (for debugging)
-            console.log('Make.com success:', makeSuccess);
-            console.log('Formspree success:', formspreeSuccess);
+            // Get form values
+            const formData = {
+                name: form.name.value,
+                email: form.email.value,
+                message: form.message.value,
+                timestamp: new Date().toISOString(),
+                source: 'Portfolio Website'
+            };
             
-            // Reset form after 5 seconds
-            setTimeout(() => {
-                form.reset();
-                form.style.display = 'block';
-                successMessage.style.display = 'none';
+            // Show loading state
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Send to BOTH services simultaneously
+                const [makeResponse, formspreeResponse] = await Promise.allSettled([
+                    // 1. Send to Make.com webhook
+                    fetch('https://hook.us2.make.com/aqd14h67ef81dmb60fywaavjjlpxb7o4', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData)
+                    }),
+                    
+                    // 2. Send to Formspree (for email backup)
+                    fetch('https://formspree.io/f/mvgebodk', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            name: formData.name,
+                            email: formData.email,
+                            message: formData.message,
+                            _subject: `New Contact: ${formData.name}`
+                        })
+                    })
+                ]);
+                
+                // Check if at least one succeeded
+                const makeSuccess = makeResponse.status === 'fulfilled' && makeResponse.value.ok;
+                const formspreeSuccess = formspreeResponse.status === 'fulfilled' && formspreeResponse.value.ok;
+                
+                if (makeSuccess || formspreeSuccess) {
+                    // Show success message
+                    form.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    
+                    // Reset form after 5 seconds
+                    setTimeout(() => {
+                        form.reset();
+                        form.style.display = 'block';
+                        successMessage.style.display = 'none';
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }, 5000);
+                } else {
+                    throw new Error('Both services failed');
+                }
+                
+            } catch (error) {
+                alert('Something went wrong. Please try again or email me directly.');
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
-            }, 5000);
-        } else {
-            // Both failed
-            console.error('Make.com error:', makeResponse.reason);
-            console.error('Formspree error:', formspreeResponse.reason);
-            throw new Error('Both services failed');
-        }
-        
-    } catch (error) {
-        console.error('Form submission error:', error);
-        alert('Something went wrong. Please try again or email me directly.');
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    }
-});
+            }
+        });
         
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1742,5 +1734,6 @@ document.getElementById('contactForm').addEventListener('submit', async function
     </script>
 </body>
 </html>
+
 
 
