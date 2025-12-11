@@ -7,9 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Calendly widget -->
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -1481,67 +1478,50 @@
     </section>
 
     <!-- Final Funnel Area - UPDATED -->
-    <section class="funnel-section" id="funnel">
-        <h2 class="funnel-title">Start Automating Your Work</h2>
-        <p class="funnel-subtitle">Choose how you'd like to get started</p>
-        
-        <div class="funnel-container">
-            <!-- Primary: Calendly -->
-            <div class="funnel-option primary fade-in">
-                <div class="option-title primary">
-                    <i class="fas fa-calendar-check"></i>
-                    Discovery Call
-                </div>
-                <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Talk About the Workflow You Want to Fix</h3>
-                <p class="option-description">
-                    Book a call if you want help spotting tasks you can automate or if you already have one workflow in mind.
-                    You get clear steps and a simple plan.
-                </p>
-                <div class="option-cta">
-                    <button class="calendly-btn" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/marcaiworks'});">
-                        Book a Discovery Call
-                    </button>
-                </div>
+<section class="funnel-section" id="funnel">
+    <h2 class="funnel-title">Start Automating Your Work</h2>
+    <p class="funnel-subtitle">Choose how you'd like to get started</p>
+    
+    <div class="funnel-container">
+        <!-- Primary: Google Calendar -->
+        <div class="funnel-option primary fade-in">
+            <div class="option-title primary">
+                <i class="fas fa-calendar-check"></i>
+                Discovery Call
             </div>
-            
-            <!-- Secondary: Contact Form -->
-            <div class="funnel-option fade-in delay-1">
-                <div class="option-title">
-                    <i class="fas fa-envelope"></i>
-                    Contact Form
-                </div>
-                <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Send a Question Before Booking</h3>
-                <p class="option-description">
-                    Use the form if you want to ask something first.
-                    Tell me about your setup or what slows you down.
-                    I'll reply with options you can explore.
-                </p>
-                <div class="option-cta">
-                    <form id="contactForm" class="contact-form-container">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" required placeholder="Your Name">
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" required placeholder="Your Email">
-                        </div>
-                        
-                        <div class="form-group">
-                            <textarea id="message" name="message" required placeholder="Tell me about your setup or what you'd like to automate..."></textarea>
-                        </div>
-                        
-                        <button type="submit" class="calendly-btn" style="background: rgba(139, 92, 246, 0.8);">
-                            Send a Message
-                        </button>
-                    </form>
-                    
-                    <div id="formSuccess" style="display: none; margin-top: 1.5rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 12px; text-align: center;">
-                        <p style="color: #4ade80; font-weight: 600;">Thank you for your message! I'll get back to you soon.</p>
-                    </div>
-                </div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Talk About the Workflow You Want to Fix</h3>
+            <p class="option-description">
+                Book a call if you want help spotting tasks you can automate or if you already have one workflow in mind.
+                You get clear steps and a simple plan.
+            </p>
+            <div class="option-cta">
+                <a href="https://calendar.app.google/AKhHYkjvpsfGXcR18"
+                   target="_blank"
+                   class="calendly-btn"
+                   style="display: inline-block; text-decoration: none;">
+                    Book a Discovery Call
+                </a>
             </div>
         </div>
-    </section>
+        
+        <!-- Secondary: Contact Form -->
+        <div class="funnel-option fade-in delay-1">
+            <div class="option-title">
+                <i class="fas fa-envelope"></i>
+                Contact Form
+            </div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: white;">Send a Question Before Booking</h3>
+            <p class="option-description">
+                Use the form if you want to ask something first.
+                Tell me about your setup or what slows you down.
+                I'll reply with options you can explore.
+            </p>
+            <div class="option-cta">
+                <!-- Contact form code... -->
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer>
@@ -1762,4 +1742,5 @@ document.getElementById('contactForm').addEventListener('submit', async function
     </script>
 </body>
 </html>
+
 
