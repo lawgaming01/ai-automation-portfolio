@@ -1099,16 +1099,16 @@
     <p class="section-subtitle">Automations I've Built for Real Businesses</p>
     
     <div class="results-grid">
-        <!-- Card 1: E-commerce Founder -->
+        <!-- Card 1: AI Email Sorting -->
         <div class="result-card active fade-in" onclick="openCaseStudy(1)">
             <div class="result-header">
-                <div class="result-icon">🛍️</div>
-                <span class="client-badge">E-commerce Founder</span>
+                <div class="result-icon">📧</div>
+                <span class="client-badge">Solo Automation Builder</span>
             </div>
-            <h3 class="result-title">Lead Capture & Qualification Automation</h3>
+            <h3 class="result-title">AI-Powered Email Sorting & Organization</h3>
             <div class="result-problem">
                 <h4>Problem:</h4>
-                <p>Manually processing 100+ daily inquiries from Shopify, missing sales opportunities, and spending 3+ hours daily on repetitive follow-ups.</p>
+                <p>Spending 30+ minutes daily manually sorting business emails into categories—client inquiries, invoices, tool notifications, and spam.</p>
             </div>
             <div class="result-teaser">
                 <span class="teaser-text">Click to see the solution</span>
@@ -1116,16 +1116,16 @@
             </div>
         </div>
         
-        <!-- Card 2: Marketing Agency -->
+        <!-- Card 2: Lead Capture System -->
         <div class="result-card active fade-in delay-1" onclick="openCaseStudy(2)">
             <div class="result-header">
-                <div class="result-icon">📢</div>
-                <span class="client-badge">Marketing Agency</span>
+                <div class="result-icon">🎯</div>
+                <span class="client-badge">Solo Automation Builder</span>
             </div>
-            <h3 class="result-title">Content Scheduling & Distribution Workflow</h3>
+            <h3 class="result-title">Lead Capture & Auto-Response System</h3>
             <div class="result-problem">
                 <h4>Problem:</h4>
-                <p>Managing 5+ client social media accounts manually, inconsistent posting schedules, and losing track of content performance across platforms.</p>
+                <p>Website contact form submissions were just sitting there. No tracking, no immediate follow-up, and manually copying lead info into spreadsheets for each inquiry.</p>
             </div>
             <div class="result-teaser">
                 <span class="teaser-text">Click to see the solution</span>
@@ -1526,88 +1526,134 @@
     // Case Study Data
     const caseStudies = {
         1: {
-            icon: "🛍️",
-            title: "Lead Capture & Qualification Automation",
-            client: "E-commerce Founder",
-            problem: `This e-commerce business was receiving 100+ daily inquiries from their Shopify store, contact forms, and social media. The founder was spending 3+ hours daily manually:
+            icon: "📧",
+            title: "AI-Powered Email Sorting & Organization",
+            client: "Solo Automation Builder",
+            problem: `Spending 30+ minutes daily manually sorting business emails into categories—client inquiries, invoices, tool notifications, and spam. The manual process was:<br><br>
             <ul>
-                <li>Copy-pasting lead information into spreadsheets</li>
-                <li>Sending initial response emails</li>
-                <li>Following up with qualified leads</li>
-                <li>Missing potential sales due to delayed responses</li>
-            </ul>`,
-            solution: `I built a complete lead processing system that:
-            <ul>
-                <li><strong>Auto-captures</strong> inquiries from all sources (Shopify, forms, social media)</li>
-                <li><strong>AI-qualifies</strong> leads based on message intent and customer value</li>
-                <li><strong>Auto-responds</strong> within 5 minutes with personalized messages</li>
-                <li><strong>Logs everything</strong> to Google Sheets with lead scores</li>
-                <li><strong>Sends Slack alerts</strong> for high-priority leads needing immediate attention</li>
+                <li>Reading every new email individually</li>
+                <li>Deciding which category it belongs to</li>
+                <li>Applying appropriate labels manually</li>
+                <li>Moving emails to designated folders</li>
+                <li>Flagging important emails for follow-up</li>
             </ul>
-            The system uses conditional logic to route different types of inquiries to appropriate response templates.`,
-            impact: `The automation transformed their lead management:
+            This created inbox clutter, delayed response times for important messages, and constant context-switching between email types.`,
+            solution: `Built a Make.com automation that:
+            <ul>
+                <li><strong>Watches Gmail inbox</strong> for new unread emails in real-time</li>
+                <li><strong>Analyzes subject lines and content</strong> using keyword filters and pattern recognition</li>
+                <li><strong>Automatically applies custom labels</strong>:
+                    <ul>
+                        <li>Client/New Inquiries</li>
+                        <li>Client/Active Projects</li>
+                        <li>Financials/Invoices</li>
+                        <li>Tools/Notifications</li>
+                        <li>Learning</li>
+                        <li>Low Priority</li>
+                    </ul>
+                </li>
+                <li><strong>Moves emails to appropriate folders</strong> based on categorization</li>
+                <li><strong>Flags high-priority client inquiries</strong> and moves them to 'Important' folder instantly</li>
+                <li><strong>Uses router modules</strong> to handle different email types with specific logic flows</li>
+            </ul>
+            The system runs 24/7, processing emails as they arrive with zero manual intervention.`,
+            impact: `The automation delivered immediate results:
             <div class="impact-metrics">
                 <div class="metric-item">
-                    <div class="metric-value">3+ hrs</div>
+                    <div class="metric-value">30+ min</div>
                     <div class="metric-label">Daily time saved</div>
                 </div>
                 <div class="metric-item">
-                    <div class="metric-value">40%</div>
-                    <div class="metric-label">Increase in response rate</div>
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Inbox organized automatically</div>
                 </div>
                 <div class="metric-item">
-                    <div class="metric-value">15%</div>
-                    <div class="metric-label">More sales conversions</div>
+                    <div class="metric-value">Instant</div>
+                    <div class="metric-label">Important email surfacing</div>
                 </div>
                 <div class="metric-item">
-                    <div class="metric-value">24/7</div>
-                    <div class="metric-label">Lead processing</div>
+                    <div class="metric-value">Zero</div>
+                    <div class="metric-label">Mental overhead from sorting</div>
                 </div>
-            </div>`,
-            tools: ["Zapier", "OpenAI GPT", "Google Sheets", "Slack", "Gmail"]
+            </div>
+            <p><strong>Specific results:</strong></p>
+            <ul>
+                <li>Eliminated 30 minutes of daily email sorting completely</li>
+                <li>Zero inbox clutter - everything automatically categorized</li>
+                <li>Client inquiry response time improved because important emails are instantly surfaced</li>
+                <li>Reduced mental overhead from context-switching between email categories</li>
+                <li>Professional email management system running 24/7</li>
+            </ul>`,
+            tools: ["Make.com", "Gmail API", "Custom Labels", "Router Module"]
         },
         2: {
-            icon: "📢",
-            title: "Content Scheduling & Distribution Workflow",
-            client: "Marketing Agency",
-            problem: `This marketing agency managed 5+ client social media accounts with a team of 3 people. They struggled with:
+            icon: "🎯",
+            title: "Lead Capture & Auto-Response System",
+            client: "Solo Automation Builder",
+            problem: `Website contact form submissions were being lost in the shuffle with:
+            <br><br>
             <ul>
-                <li>Inconsistent posting schedules across platforms</li>
-                <li>Manual uploading to each social network</li>
-                <li>No centralized content calendar</li>
-                <li>Difficulty tracking what content performed best</li>
-                <li>Missing optimal posting times due to manual scheduling</li>
-            </ul>`,
-            solution: `I created a unified content management system that:
-            <ul>
-                <li><strong>Centralizes content</strong> in Notion with approval workflows</li>
-                <li><strong>Auto-schedules</strong> posts to LinkedIn, Twitter, and Instagram</li>
-                <li><strong>Optimizes timing</strong> based on platform analytics</li>
-                <li><strong>Auto-generates</strong> platform-specific formats (carousels, threads, etc.)</li>
-                <li><strong>Tracks performance</strong> and generates weekly reports</li>
-                <li><strong>Recycles top-performing</strong> content automatically</li>
+                <li>No tracking or organization of incoming leads</li>
+                <li>No immediate follow-up or acknowledgment</li>
+                <li>Manual copying of lead info into spreadsheets for each inquiry</li>
+                <li>No audit trail of which leads were contacted when</li>
+                <li>Delayed responses creating poor first impressions</li>
+                <li>Potential leads falling through the cracks</li>
             </ul>
-            The system includes content batching, approval flows, and performance analytics.`,
-            impact: `The agency now manages more clients with less effort:
+            The manual process meant leads could sit for hours or days before any response, missing valuable business opportunities.`,
+            solution: `Created a comprehensive lead management system that:
+            <ul>
+                <li><strong>Webhook-triggered workflow</strong> in Make.com that captures form submissions in real-time</li>
+                <li><strong>Logs all lead data</strong> directly into Google Sheets with timestamp tracking:
+                    <ul>
+                        <li>Name</li>
+                        <li>Email</li>
+                        <li>Message content</li>
+                        <li>Submission timestamp</li>
+                        <li>Lead status (New, Contacted, Converted)</li>
+                        <li>Source (which website/landing page)</li>
+                    </ul>
+                </li>
+                <li><strong>Sends instant notification email</strong> to business owner with:
+                    <ul>
+                        <li>Complete lead details</li>
+                        <li>Direct link to the spreadsheet row</li>
+                        <li>Quick action buttons for follow-up</li>
+                    </ul>
+                </li>
+                <li><strong>Automatically sends personalized acknowledgment</strong> to the lead within seconds of submission</li>
+                <li><strong>Creates follow-up reminders</strong> for unresponded leads after 24 hours</li>
+            </ul>
+            The system ensures no lead goes unnoticed and provides complete visibility into the lead pipeline.`,
+            impact: `Transformed lead management from chaotic to systematic:
             <div class="impact-metrics">
                 <div class="metric-item">
-                    <div class="metric-value">8 hrs</div>
-                    <div class="metric-label">Weekly time saved per team member</div>
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Lead capture rate</div>
                 </div>
                 <div class="metric-item">
-                    <div class="metric-value">3x</div>
-                    <div class="metric-label">More clients managed</div>
+                    <div class="metric-value">5 seconds</div>
+                    <div class="metric-label">Acknowledgment time</div>
                 </div>
                 <div class="metric-item">
-                    <div class="metric-value">65%</div>
-                    <div class="metric-label">Increase in content consistency</div>
+                    <div class="metric-value">Zero</div>
+                    <div class="metric-label">Manual data entry</div>
                 </div>
                 <div class="metric-item">
-                    <div class="metric-value">30%</div>
-                    <div class="metric-label">Higher engagement rates</div>
+                    <div class="metric-value">Complete</div>
+                    <div class="metric-label">Audit trail</div>
                 </div>
-            </div>`,
-            tools: ["Make", "Notion", "Buffer API", "Google Analytics", "Custom Scripts"]
+            </div>
+            <p><strong>Specific results:</strong></p>
+            <ul>
+                <li>100% lead capture rate with zero manual data entry</li>
+                <li>Leads receive acknowledgment within 5 seconds instead of hours/days</li>
+                <li>Complete audit trail of all inquiries in one organized spreadsheet</li>
+                <li>Professional first impression with instant responses</li>
+                <li>Reduced response time from potential clients by 95%</li>
+                <li>Increased lead-to-client conversion rate due to timely follow-ups</li>
+            </ul>`,
+            tools: ["Make.com", "Webhooks", "Google Sheets API", "Gmail API"]
         }
     };
     
@@ -1656,26 +1702,22 @@
         
         document.getElementById('modalContent').innerHTML = modalContent;
         document.getElementById('caseStudyModal').style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        document.body.style.overflow = 'hidden';
     }
     
     function closeCaseStudy() {
         document.getElementById('caseStudyModal').style.display = 'none';
-        document.body.style.overflow = 'auto'; // Re-enable scrolling
+        document.body.style.overflow = 'auto';
     }
     
     function getToolIcon(toolName) {
         const icons = {
-            'Zapier': '<i class="fas fa-bolt"></i>',
-            'Make': '<i class="fas fa-cogs"></i>',
-            'OpenAI GPT': '<i class="fas fa-robot"></i>',
-            'Google Sheets': '<i class="fas fa-table"></i>',
-            'Slack': '<i class="fab fa-slack"></i>',
-            'Gmail': '<i class="fas fa-envelope"></i>',
-            'Notion': '<i class="fas fa-sticky-note"></i>',
-            'Buffer API': '<i class="fas fa-share-alt"></i>',
-            'Google Analytics': '<i class="fas fa-chart-line"></i>',
-            'Custom Scripts': '<i class="fas fa-code"></i>'
+            'Make.com': '<i class="fas fa-cogs"></i>',
+            'Gmail API': '<i class="fas fa-envelope"></i>',
+            'Custom Labels': '<i class="fas fa-tag"></i>',
+            'Router Module': '<i class="fas fa-route"></i>',
+            'Webhooks': '<i class="fas fa-link"></i>',
+            'Google Sheets API': '<i class="fas fa-table"></i>'
         };
         return icons[toolName] || '<i class="fas fa-tools"></i>';
     }
@@ -2356,6 +2398,7 @@
     </script>
 </body>
 </html>
+
 
 
 
