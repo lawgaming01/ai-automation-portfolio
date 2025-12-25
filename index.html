@@ -2237,78 +2237,106 @@
             });
         });
         
-                // Form submission to BOTH Formspree AND Make.com
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+// Form submission to Formspree, Make.com, AND n8n
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    const successMessage = document.getElementById('formSuccess');
+    
+    // Get form values
+    const formData = {
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value,
+        timestamp: new Date().toISOString(),
+        source: 'Portfolio Website',
+        page_url: window.location.href,
+        user_agent: navigator.userAgent
+    };
+    
+    // Show loading state
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    
+    try {
+        // Send to ALL THREE services simultaneously
+        const [makeResponse, formspreeResponse, n8nResponse] = await Promise.allSettled([
+            // 1. Send to Make.com webhook (if you have one)
+            fetch('YOUR_MAKE_COM_WEBHOOK_URL_HERE', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            }).catch(() => ({ ok: false })), // Gracefully handle if Make.com is not set up
             
-            const form = e.target;
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            const successMessage = document.getElementById('formSuccess');
+            // 2. Send to Formspree (for email backup)
+            fetch('https://formspree.io/f/mvgebodk', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message,
+                    _subject: `New Contact: ${formData.name}`,
+                    _replyto: formData.email
+                })
+            }),
             
-            // Get form values
-            const formData = {
-                name: form.name.value,
-                email: form.email.value,
-                message: form.message.value,
-                timestamp: new Date().toISOString(),
-                source: 'Portfolio Website'
-            };
+            // 3. Send to n8n webhook (NEW)
+            fetch('https://marcaiworks.app.n8n.cloud/webhook/Contact-Form', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'X-API-Key': 'OPTIONAL_API_KEY_IF_YOU_USE_ONE' // Remove if not needed
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    workflow: 'portfolio_contact_form',
+                    priority: 'normal',
+                    tags: ['website', 'contact', 'lead']
+                })
+            }).catch(() => ({ ok: false })) // Gracefully handle if n8n is not set up
+        ]);
+        
+        // Check which services succeeded
+        const makeSuccess = makeResponse.status === 'fulfilled' && makeResponse.value.ok;
+        const formspreeSuccess = formspreeResponse.status === 'fulfilled' && formspreeResponse.value.ok;
+        const n8nSuccess = n8nResponse.status === 'fulfilled' && n8nResponse.value.ok;
+        
+        // Log for debugging (remove in production)
+        console.log('Form submission results:', {
+            make: makeSuccess ? '✓' : '✗',
+            formspree: formspreeSuccess ? '✓' : '✗',
+            n8n: n8nSuccess ? '✓' : '✗'
+        });
+        
+        // If at least one succeeded (Formspree is the minimum requirement)
+        if (formspreeSuccess || makeSuccess || n8nSuccess) {
+            // Show success message
+            form.style.display = 'none';
+            successMessage.style.display = 'block';
             
-            // Show loading state
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            try {
-                // Send to BOTH services simultaneously
-                const [makeResponse, formspreeResponse] = await Promise.allSettled([
-                    // 1. Send to Make.com webhook
-                    fetch('https://hook.us2.make.com/aqd14h67ef81dmb60fywaavjjlpxb7o4', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(formData)
-                    }),
-                    
-                    // 2. Send to Formspree (for email backup)
-                    fetch('https://formspree.io/f/mvgebodk', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            name: formData.name,
-                            email: formData.email,
-                            message: formData.message,
-                            _subject: `New Contact: ${formData.name}`
-                        })
-                    })
-                ]);
-                
-                // Check if at least one succeeded
-                const makeSuccess = makeResponse.status === 'fulfilled' && makeResponse.value.ok;
-                const formspreeSuccess = formspreeResponse.status === 'fulfilled' && formspreeResponse.value.ok;
-                
-                if (makeSuccess || formspreeSuccess) {
-                    // Show success message
-                    form.style.display = 'none';
-                    successMessage.style.display = 'block';
-                    
-                    // Reset form after 5 seconds
-                    setTimeout(() => {
-                        form.reset();
-                        form.style.display = 'block';
-                        successMessage.style.display = 'none';
-                        submitBtn.textContent = originalText;
-                        submitBtn.disabled = false;
-                    }, 5000);
-                } else {
-                    throw new Error('Both services failed');
-                }
-                
-            } catch (error) {
-                alert('Something went wrong. Please try again or email me directly.');
+            // Reset form after 5 seconds
+            setTimeout(() => {
+                form.reset();
+                form.style.display = 'block';
+                successMessage.style.display = 'none';
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
-            }
-        });
+            }, 5000);
+        } else {
+            throw new Error('All services failed');
+        }
+        
+    } catch (error) {
+        console.error('Form submission error:', error);
+        alert('Something went wrong. Please try again or email me directly.');
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    }
+});
         
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2398,6 +2426,7 @@
     </script>
 </body>
 </html>
+
 
 
 
