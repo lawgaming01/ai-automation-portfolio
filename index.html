@@ -1133,20 +1133,20 @@
             </div>
         </div>
         
-        <!-- Card 3: Coming Soon -->
-        <div class="result-card coming-soon fade-in delay-2">
+        <!-- Card 3: AI Video Production (ACTIVE NOW) -->
+        <div class="result-card active fade-in delay-2" onclick="openCaseStudy(3)">
             <div class="result-header">
-                <div class="result-icon">💰</div>
-                <span class="coming-soon-badge">Coming Soon</span>
-                <span class="client-badge">SaaS Startup</span>
+                <div class="result-icon">🎬</div>
+                <span class="client-badge">Content Creator</span>
             </div>
-            <h3 class="result-title">Customer Onboarding Automation</h3>
+            <h3 class="result-title">AI Video Production Pipeline</h3>
             <div class="result-problem">
                 <h4>Problem:</h4>
-                <p>Manual welcome sequences causing delays in customer activation and higher churn rates during trial period.</p>
+                <p>Creating short-form videos for TikTok and Instagram Reels required hours of scriptwriting, voiceover recording, video editing, and caption generation—bottlenecking content output to 2-3 videos per week.</p>
             </div>
             <div class="result-teaser">
-                <span class="teaser-text">Case study in progress</span>
+                <span class="teaser-text">Click to see the solution</span>
+                <span class="teaser-arrow">→</span>
             </div>
         </div>
         
@@ -1523,7 +1523,7 @@
 </style>
 
 <script>
-    // Case Study Data
+    // Case Study Data - UPDATED WITH CARD 3
     const caseStudies = {
         1: {
             icon: "📧",
@@ -1654,6 +1654,62 @@
                 <li>Increased lead-to-client conversion rate due to timely follow-ups</li>
             </ul>`,
             tools: ["Make.com", "Webhooks", "Google Sheets API", "Gmail API"]
+        },
+        3: {
+            icon: "🎬",
+            title: "AI Video Production Pipeline",
+            client: "Content Creator",
+            problem: `Creating short-form videos for TikTok and Instagram Reels was an intensive manual process:
+            <br><br>
+            <ul>
+                <li>2-3 hours per video for scriptwriting and ideation</li>
+                <li>Manual voiceover recording and editing</li>
+                <li>Painstaking caption generation and time-syncing</li>
+                <li>Disorganized asset management across multiple drives</li>
+                <li>Limited output of only 2-3 videos per week</li>
+                <li>Inconsistent video quality due to time constraints</li>
+            </ul>
+            The manual bottleneck prevented scaling content production and maintaining consistent posting schedules.`,
+            solution: `Built an advanced n8n workflow that automates the entire video production pipeline:
+            <ul>
+                <li><strong>AI Script Generation</strong>: Uses OpenRouter API with Llama 3.3 to write viral short-form scripts optimized for hooks and engagement patterns</li>
+                <li><strong>Voiceover Automation</strong>: Converts generated scripts to professional voiceover audio files using Text-to-Speech API</li>
+                <li><strong>Smart Caption Generation</strong>: Creates time-synced SRT caption files using GPT-4 for perfect timing and readability</li>
+                <li><strong>Asset Management</strong>: Automatically uploads all assets (voiceover audio, captions, metadata) to organized Google Drive folders</li>
+                <li><strong>Project Tracking</strong>: Logs complete project details to Google Sheets with timestamps and status updates</li>
+                <li><strong>Modular Architecture</strong>: Includes placeholder nodes for premium video generation APIs (RunwayML, Pika, Replicate) for future expansion</li>
+                <li><strong>Quality Control</strong>: Built-in validation steps ensure all generated content meets quality standards</li>
+            </ul>
+            The entire pipeline runs automatically—from idea to ready-to-edit assets in minutes.`,
+            impact: `Revolutionized video content production capabilities:
+            <div class="impact-metrics">
+                <div class="metric-item">
+                    <div class="metric-value">2+ hrs → 5 min</div>
+                    <div class="metric-label">Production time per video</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">2-3 → 10+</div>
+                    <div class="metric-label">Videos per week capacity</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Manual tasks eliminated</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">Complete</div>
+                    <div class="metric-label">Audit trail & asset management</div>
+                </div>
+            </div>
+            <p><strong>Specific results:</strong></p>
+            <ul>
+                <li>Reduced video production time from 2+ hours to just 5 minutes per video</li>
+                <li>Enabled scaling from 2-3 videos/week to 10+ videos/week capacity</li>
+                <li>Eliminated manual scriptwriting, voiceover recording, and caption timing</li>
+                <li>Complete audit trail with organized asset management in Google Drive</li>
+                <li>Consistent quality and style across all produced content</li>
+                <li>Faster iteration and A/B testing of different content approaches</li>
+            </ul>`,
+            tools: ["n8n", "OpenRouter API (Llama 3.3, GPT-4)", "Text-to-Speech API", "Google Drive API", "Google Sheets API"]
         }
     };
     
@@ -1717,7 +1773,11 @@
             'Custom Labels': '<i class="fas fa-tag"></i>',
             'Router Module': '<i class="fas fa-route"></i>',
             'Webhooks': '<i class="fas fa-link"></i>',
-            'Google Sheets API': '<i class="fas fa-table"></i>'
+            'Google Sheets API': '<i class="fas fa-table"></i>',
+            'n8n': '<i class="fas fa-project-diagram"></i>',
+            'OpenRouter API (Llama 3.3, GPT-4)': '<i class="fas fa-robot"></i>',
+            'Text-to-Speech API': '<i class="fas fa-volume-up"></i>',
+            'Google Drive API': '<i class="fab fa-google-drive"></i>'
         };
         return icons[toolName] || '<i class="fas fa-tools"></i>';
     }
@@ -2426,6 +2486,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
     </script>
 </body>
 </html>
+
 
 
 
