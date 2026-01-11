@@ -1133,7 +1133,7 @@
             </div>
         </div>
         
-        <!-- Card 3: AI Video Production (ACTIVE NOW) -->
+        <!-- Card 3: AI Video Production -->
         <div class="result-card active fade-in delay-2" onclick="openCaseStudy(3)">
             <div class="result-header">
                 <div class="result-icon">🎬</div>
@@ -1150,17 +1150,34 @@
             </div>
         </div>
         
-        <!-- Card 4: Coming Soon -->
-        <div class="result-card coming-soon fade-in delay-3">
+        <!-- Card 4: Contract Automation (ACTIVE NOW) -->
+        <div class="result-card active fade-in delay-3" onclick="openCaseStudy(4)">
             <div class="result-header">
-                <div class="result-icon">📊</div>
-                <span class="coming-soon-badge">Coming Soon</span>
-                <span class="client-badge">Consulting Firm</span>
+                <div class="result-icon">📄</div>
+                <span class="client-badge">Employment Agency</span>
             </div>
-            <h3 class="result-title">Client Reporting Automation</h3>
+            <h3 class="result-title">Contract Automation System</h3>
             <div class="result-problem">
                 <h4>Problem:</h4>
-                <p>Monthly report creation taking 2-3 days per client, prone to manual errors, and inconsistent formatting.</p>
+                <p>Singapore agency placing domestic helpers manually created 8 different contracts per client, re-typing the same data across documents, tracking stages across WhatsApp/email/folders—requiring 10-15 hours weekly of repetitive document work.</p>
+            </div>
+            <div class="result-teaser">
+                <span class="teaser-text">Click to see the solution</span>
+                <span class="teaser-arrow">→</span>
+            </div>
+        </div>
+        
+        <!-- Card 5: Coming Soon -->
+        <div class="result-card coming-soon fade-in">
+            <div class="result-header">
+                <div class="result-icon">💰</div>
+                <span class="coming-soon-badge">Coming Soon</span>
+                <span class="client-badge">SaaS Startup</span>
+            </div>
+            <h3 class="result-title">Customer Onboarding Automation</h3>
+            <div class="result-problem">
+                <h4>Problem:</h4>
+                <p>Manual welcome sequences causing delays in customer activation and higher churn rates during trial period.</p>
             </div>
             <div class="result-teaser">
                 <span class="teaser-text">Case study in progress</span>
@@ -1181,12 +1198,21 @@
 </div>
 
 <style>
-    /* Real Results Section Styles */
+    /* Real Results Section Styles - UPDATED FOR 2x3 GRID */
     .results-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
         margin-bottom: 4rem;
+    }
+    
+    /* On desktop, show 2x2 for first 4, then single column for 5th */
+    @media (min-width: 769px) {
+        .result-card:nth-child(5) {
+            grid-column: span 2;
+            max-width: 50%;
+            justify-self: center;
+        }
     }
     
     @media (max-width: 768px) {
@@ -1523,7 +1549,7 @@
 </style>
 
 <script>
-    // Case Study Data - UPDATED WITH CARD 3
+    // Case Study Data - UPDATED WITH CARD 4
     const caseStudies = {
         1: {
             icon: "📧",
@@ -1710,6 +1736,93 @@
                 <li>Faster iteration and A/B testing of different content approaches</li>
             </ul>`,
             tools: ["n8n", "OpenRouter API (Llama 3.3, GPT-4)", "Text-to-Speech API", "Google Drive API", "Google Sheets API"]
+        },
+        4: {
+            icon: "📄",
+            title: "Contract Automation System",
+            client: "Employment Agency",
+            problem: `A Singapore employment agency placing domestic helpers faced massive administrative overhead:
+            <br><br>
+            <ul>
+                <li>Creating 8 different legal documents per client manually</li>
+                <li>Re-typing the same household and job details across all documents</li>
+                <li>Tracking client stages across WhatsApp, email, and physical folders</li>
+                <li>Manual calculations for 24-month salary and loan repayment schedules</li>
+                <li>Missing critical information like FIN numbers and insurance policy numbers</li>
+                <li>Dedicating 10-15 hours weekly to repetitive document work</li>
+                <li>High risk of filing errors and inconsistent document organization</li>
+            </ul>
+            The manual process was unsustainable, error-prone, and prevented scaling the agency's operations.`,
+            solution: `Built a comprehensive Make.com workflow that automates the entire contract lifecycle:
+            <ul>
+                <li><strong>Intake Form</strong>: Employer submits details via Google Form with household information, job requirements, and helper preferences</li>
+                <li><strong>Database Integration</strong>: System automatically pulls helper information from existing database</li>
+                <li><strong>Document Generation</strong>: Creates 8 customized documents in PandaDoc:
+                    <ul>
+                        <li>Service Agreement</li>
+                        <li>Employment Contract</li>
+                        <li>Safety Agreement</li>
+                        <li>Fee Schedule</li>
+                        <li>Official Receipt</li>
+                        <li>Job Order</li>
+                        <li>24-month Salary & Loan Repayment Schedule (with auto-calculations)</li>
+                        <li>Helper Biodata Summary</li>
+                    </ul>
+                </li>
+                <li><strong>E-Signature Workflow</strong>: Routes documents for sequential signatures (Employer → Helper → Witness)</li>
+                <li><strong>Folder Organization</strong>: Auto-creates organized Google Drive folders: [Employer Code] - [Client Name] - [Helper Name]</li>
+                <li><strong>Email Monitoring</strong>: Watches incoming emails to extract:
+                    <ul>
+                        <li>FIN numbers from MOM (Ministry of Manpower) approvals</li>
+                        <li>Policy numbers from insurance confirmations</li>
+                    </ul>
+                </li>
+                <li><strong>Dashboard Tracking</strong>: Updates Google Sheets dashboard tracking 8 pipeline stages:
+                    <ul>
+                        <li>Form Submitted</li>
+                        <li>Contracts Generated</li>
+                        <li>Documents Signed</li>
+                        <li>Payment Received</li>
+                        <li>MOM Approved</li>
+                        <li>Medical Cleared</li>
+                        <li>Helper Arrived</li>
+                        <li>Successfully Deployed</li>
+                    </ul>
+                </li>
+                <li><strong>Automated Notifications</strong>: Sends email updates at each milestone with next steps</li>
+            </ul>
+            The entire system ensures consistency, accuracy, and complete visibility.`,
+            impact: `Transformed agency operations from manual chaos to automated efficiency:
+            <div class="impact-metrics">
+                <div class="metric-item">
+                    <div class="metric-value">10-15 hrs → 2 min</div>
+                    <div class="metric-label">Contract generation time</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">~120</div>
+                    <div class="metric-label">Contract packages yearly</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">500-600 hrs</div>
+                    <div class="metric-label">Annual time saved</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">Zero</div>
+                    <div class="metric-label">Filing errors</div>
+                </div>
+            </div>
+            <p><strong>Specific results:</strong></p>
+            <ul>
+                <li>Reduced contract generation time from 10-15 hours to just 2 minutes per client</li>
+                <li>Processes approximately 10 clients monthly = 120 automated contract packages yearly</li>
+                <li>Eliminated manual copy-paste and data re-entry across 8 documents</li>
+                <li>Zero filing errors with automatic folder organization in Google Drive</li>
+                <li>Real-time visibility of all client stages via dashboard</li>
+                <li>Saved approximately 500-600 hours annually on administrative work</li>
+                <li>Improved compliance with automatic extraction of FIN and insurance numbers</li>
+                <li>Professional and consistent document formatting across all clients</li>
+            </ul>`,
+            tools: ["Make.com", "Google Forms", "Google Sheets", "PandaDoc API", "Gmail (email parsing)", "Google Drive API"]
         }
     };
     
@@ -1777,7 +1890,11 @@
             'n8n': '<i class="fas fa-project-diagram"></i>',
             'OpenRouter API (Llama 3.3, GPT-4)': '<i class="fas fa-robot"></i>',
             'Text-to-Speech API': '<i class="fas fa-volume-up"></i>',
-            'Google Drive API': '<i class="fab fa-google-drive"></i>'
+            'Google Drive API': '<i class="fab fa-google-drive"></i>',
+            'Google Forms': '<i class="fas fa-list-alt"></i>',
+            'Google Sheets': '<i class="fas fa-table"></i>',
+            'PandaDoc API': '<i class="fas fa-file-signature"></i>',
+            'Gmail (email parsing)': '<i class="fas fa-inbox"></i>'
         };
         return icons[toolName] || '<i class="fas fa-tools"></i>';
     }
@@ -2486,6 +2603,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
     </script>
 </body>
 </html>
+
 
 
 
