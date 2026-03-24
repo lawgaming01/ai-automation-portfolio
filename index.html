@@ -1167,22 +1167,22 @@
             </div>
         </div>
         
-        <!-- Card 5: Coming Soon -->
-        <div class="result-card coming-soon fade-in">
-            <div class="result-header">
-                <div class="result-icon">💰</div>
-                <span class="coming-soon-badge">Coming Soon</span>
-                <span class="client-badge">SaaS Startup</span>
-            </div>
-            <h3 class="result-title">Customer Onboarding Automation</h3>
-            <div class="result-problem">
-                <h4>Problem:</h4>
-                <p>Manual welcome sequences causing delays in customer activation and higher churn rates during trial period.</p>
-            </div>
-            <div class="result-teaser">
-                <span class="teaser-text">Case study in progress</span>
-            </div>
-        </div>
+        <!-- Card 5: Receipts Report Automation -->
+<div class="result-card active fade-in" onclick="openCaseStudy(5)">
+    <div class="result-header">
+        <div class="result-icon">🧾</div>
+        <span class="client-badge">Small Business Owner</span>
+    </div>
+    <h3 class="result-title">Receipts Report Automation</h3>
+    <div class="result-problem">
+        <h4>Problem:</h4>
+        <p>Manually processing hundreds of receipts each month—extracting dates, amounts, currencies, and organizing them into expense reports. This took 10+ hours weekly and was prone to data entry errors.</p>
+    </div>
+    <div class="result-teaser">
+        <span class="teaser-text">Click to see the solution</span>
+        <span class="teaser-arrow">→</span>
+    </div>
+</div>
     </div>
 </section>
 
@@ -1200,26 +1200,30 @@
 <style>
     /* Real Results Section Styles - UPDATED FOR 2x3 GRID */
     .results-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-        margin-bottom: 4rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+/* For 5 cards: first 4 in 2x2 grid, 5th centered below */
+@media (min-width: 769px) {
+    .result-card:nth-child(5) {
+        grid-column: span 2;
+        max-width: 50%;
+        justify-self: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .results-grid {
+        grid-template-columns: 1fr;
     }
     
-    /* On desktop, show 2x2 for first 4, then single column for 5th */
-    @media (min-width: 769px) {
-        .result-card:nth-child(5) {
-            grid-column: span 2;
-            max-width: 50%;
-            justify-self: center;
-        }
+    .result-card:nth-child(5) {
+        max-width: 100%;
     }
-    
-    @media (max-width: 768px) {
-        .results-grid {
-            grid-template-columns: 1fr;
-        }
-    }
+}
     
     .result-card {
         background: rgba(30, 30, 40, 0.5);
@@ -1823,7 +1827,92 @@
                 <li>Professional and consistent document formatting across all clients</li>
             </ul>`,
             tools: ["Make.com", "Google Forms", "Google Sheets", "PandaDoc API", "Gmail (email parsing)", "Google Drive API"]
-        }
+        },
+        5: {
+    icon: "🧾",
+    title: "Receipts Report Automation",
+    client: "Small Business Owner",
+    problem: `Processing receipts was a massive time sink:
+    <br><br>
+    <ul>
+        <li>Hundreds of receipts arriving daily via email, WhatsApp, and physical copies</li>
+        <li>Manual data entry: extracting date, amount, vendor, and currency from each receipt</li>
+        <li>Sorting receipts into categories and preparing monthly expense reports</li>
+        <li>Managing multiple currencies (PHP, USD, EUR, SGD) and tracking exchange rates</li>
+        <li>10+ hours per week spent on receipt processing and reconciliation</li>
+        <li>High risk of data entry errors and missed receipts</li>
+    </ul>
+    The manual process was unsustainable as the business grew, eating up valuable time that could be spent on growth.`,
+    solution: `Built a two-part automated receipt processing system in Make.com:
+
+    <br><br>
+    <strong>Workflow 1: Folder Setup Automation</strong>
+    <ul>
+        <li><strong>Triggers</strong> when a new folder is created in Google Drive (one folder per client/month)</li>
+        <li><strong>Creates a "Logged" subfolder</strong> to store processed receipts</li>
+        <li><strong>Copies a template Google Sheet</strong> (GWEC Expenses Template) into the new folder</li>
+        <li><strong>Stores folder information</strong> (folder_id, folder_name, logged_folder_id, counter) in a datastore for tracking</li>
+    </ul>
+
+    <strong>Workflow 2: Receipt Processing Automation</strong>
+    <ul>
+        <li><strong>Retrieves folder info</strong> from the datastore to know which folder to process</li>
+        <li><strong>Scans Google Drive folder</strong> for unprocessed receipt images (JPEG, PNG, PDF)</li>
+        <li><strong>Uses Google Gemini AI (Gemini 2.5 Flash Lite)</strong> to extract:
+            <ul>
+                <li>Date of transaction</li>
+                <li>Total amount (with 2 decimal places)</li>
+                <li>Currency (3-letter ISO code: PHP, USD, EUR, etc.)</li>
+            </ul>
+        </li>
+        <li><strong>Routes based on currency:</strong>
+            <ul>
+                <li>If USD → sets exchange rate to 1</li>
+                <li>If other currency → fetches real-time exchange rate from EU Commission API</li>
+            </ul>
+        </li>
+        <li><strong>Logs to Google Sheet</strong> with columns:
+            <ul>
+                <li>Date | Receipt # | Filename | Currency | Amount (Local) | Exchange Rate | Amount (USD)</li>
+            </ul>
+        </li>
+        <li><strong>Moves processed receipt</strong> to the "Logged" subfolder to avoid reprocessing</li>
+        <li><strong>Updates counter</strong> in datastore to track how many receipts were processed</li>
+    </ul>
+
+    The system runs 24/7, processing receipts as they arrive with zero manual intervention.`,
+    impact: `Revolutionized receipt management:
+    <div class="impact-metrics">
+        <div class="metric-item">
+            <div class="metric-value">10+ hrs → 5 min</div>
+            <div class="metric-label">Weekly processing time</div>
+        </div>
+        <div class="metric-item">
+            <div class="metric-value">100%</div>
+            <div class="metric-label">Automated data extraction</div>
+        </div>
+        <div class="metric-item">
+            <div class="metric-value">Real-time</div>
+            <div class="metric-label">Currency conversion</div>
+        </div>
+        <div class="metric-item">
+            <div class="metric-value">Zero</div>
+            <div class="metric-label">Manual data entry</div>
+        </div>
+    </div>
+    <p><strong>Specific results:</strong></p>
+    <ul>
+        <li>Reduced receipt processing time from 10+ hours to just 5 minutes per week</li>
+        <li>Eliminated manual data entry completely—AI extracts date, amount, and currency</li>
+        <li>Automatic multi-currency support with real-time exchange rates from EU Commission API</li>
+        <li>Complete audit trail with receipts organized in "Logged" subfolders</li>
+        <li>Monthly expense reports generated automatically in Google Sheets</li>
+        <li>Zero data entry errors—consistent formatting and categorization</li>
+        <li>Saved approximately 500 hours annually on administrative bookkeeping</li>
+        <li>Accurate tax reporting with all receipts properly tracked and categorized</li>
+    </ul>`,
+    tools: ["Make.com", "Google Drive API", "Google Sheets API", "Google Gemini AI", "Exchange Rate API", "Datastore"]
+}
     };
     
     // Modal Functions
@@ -1894,7 +1983,10 @@
             'Google Forms': '<i class="fas fa-list-alt"></i>',
             'Google Sheets': '<i class="fas fa-table"></i>',
             'PandaDoc API': '<i class="fas fa-file-signature"></i>',
-            'Gmail (email parsing)': '<i class="fas fa-inbox"></i>'
+            'Gmail (email parsing)': '<i class="fas fa-inbox"></i>',
+            'Google Gemini AI': '<i class="fas fa-brain"></i>',
+'Exchange Rate API': '<i class="fas fa-chart-line"></i>',
+'Datastore': '<i class="fas fa-database"></i>'
         };
         return icons[toolName] || '<i class="fas fa-tools"></i>';
     }
