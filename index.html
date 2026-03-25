@@ -1305,8 +1305,8 @@
 
 <script>
 // ============================================
-// CINEMATIC GLASS MONOLITH WITH DATA THREADS
-// Unreal Engine 5 style render
+// CINEMATIC NEURAL SPHERE WITH DATA THREADS
+// Apple Industrial Chic - Ray-Traced Style
 // ============================================
 
 (function() {
@@ -1320,30 +1320,30 @@
     let particles = [];
     let animationId;
     
-    // Monolith geometry
-    let monolith = {
+    // Neural Sphere properties
+    let sphere = {
         x: 0,
         y: 0,
+        radius: 0,
         rotationX: 0,
         rotationY: 0,
-        scale: 1
+        pulse: 0
     };
     
     function init() {
         ctx = canvas.getContext('2d');
         resize();
         initParticles();
+        initFractals();
         
-        // Mouse movement for parallax
+        // Mouse movement for subtle parallax
         window.addEventListener('mousemove', (e) => {
             mouseX = (e.clientX / width) * 2 - 1;
             mouseY = (e.clientY / height) * 2 - 1;
         });
         
-        // Resize handler
         window.addEventListener('resize', resize);
         
-        // Start animation
         canvas.classList.add('loaded');
         animate();
     }
@@ -1354,137 +1354,200 @@
         canvas.width = width;
         canvas.height = height;
         
-        // Center monolith
-        monolith.x = width / 2;
-        monolith.y = height / 2;
-        monolith.scale = Math.min(width, height) / 800;
+        sphere.x = width / 2;
+        sphere.y = height / 2;
+        sphere.radius = Math.min(width, height) * 0.22;
     }
     
     function initParticles() {
-        const particleCount = 80;
+        const particleCount = 150;
         particles = [];
         for (let i = 0; i < particleCount; i++) {
             particles.push({
-                x: (Math.random() - 0.5) * 300,
+                x: (Math.random() - 0.5) * 400,
                 y: (Math.random() - 0.5) * 400,
                 z: Math.random() * 200 - 100,
-                speed: 0.5 + Math.random() * 2,
-                size: 1 + Math.random() * 2,
-                glow: 0.3 + Math.random() * 0.7,
-                phase: Math.random() * Math.PI * 2
+                speed: 0.3 + Math.random() * 1.5,
+                size: 0.5 + Math.random() * 1.5,
+                glow: 0.2 + Math.random() * 0.6,
+                phase: Math.random() * Math.PI * 2,
+                color: Math.random() > 0.7 ? '#8B5CF6' : '#E0F7FA'
             });
         }
     }
     
-    function drawGlassMonolith() {
-        const w = 180 * monolith.scale;
-        const h = 320 * monolith.scale;
-        const depth = 60 * monolith.scale;
-        
-        // Apply mouse parallax
-        const rotX = monolith.rotationX + mouseY * 0.05;
-        const rotY = monolith.rotationY + mouseX * 0.05;
-        
-        // Save context
-        ctx.save();
-        ctx.translate(monolith.x, monolith.y);
-        
-        // 3D rotation transform
-        ctx.transform(1, rotX * 0.3, rotY * 0.3, 1, 0, 0);
-        
-        // Draw shadow/glow behind
-        ctx.shadowBlur = 0;
-        
-        // Front face (translucent glass)
-        ctx.beginPath();
-        ctx.rect(-w/2, -h/2, w, h);
-        
-        // Glass gradient
-        const gradient = ctx.createLinearGradient(-w/3, -h/3, w/3, h/3);
-        gradient.addColorStop(0, 'rgba(30, 30, 45, 0.15)');
-        gradient.addColorStop(0.5, 'rgba(20, 20, 35, 0.25)');
-        gradient.addColorStop(1, 'rgba(10, 10, 20, 0.1)');
-        
-        ctx.fillStyle = gradient;
-        ctx.fill();
-        
-        // Rim lighting (violet edges)
-        ctx.strokeStyle = '#8B5CF6';
-        ctx.lineWidth = 3 * monolith.scale;
-        ctx.shadowBlur = 12;
-        ctx.shadowColor = '#8B5CF6';
-        ctx.stroke();
-        
-        // Inner glow effect
-        ctx.beginPath();
-        ctx.rect(-w/2 + 4, -h/2 + 4, w - 8, h - 8);
-        ctx.strokeStyle = 'rgba(139, 92, 246, 0.6)';
-        ctx.lineWidth = 1.5 * monolith.scale;
-        ctx.stroke();
-        
-        // Draw data threads (inner fiber optics)
-        drawDataThreads(w, h);
-        
-        // Draw top highlight (rim light)
-        ctx.beginPath();
-        ctx.moveTo(-w/2 + 10, -h/2 + 5);
-        ctx.lineTo(-w/2 + 30, -h/2 + 5);
-        ctx.lineTo(-w/2 + 20, -h/2 + 15);
-        ctx.fillStyle = 'rgba(139, 92, 246, 0.4)';
-        ctx.fill();
-        
-        ctx.beginPath();
-        ctx.moveTo(w/2 - 10, -h/2 + 5);
-        ctx.lineTo(w/2 - 30, -h/2 + 5);
-        ctx.lineTo(w/2 - 20, -h/2 + 15);
-        ctx.fill();
-        
-        // Draw corner reflections
-        ctx.beginPath();
-        ctx.moveTo(-w/2 + 15, -h/2 + 8);
-        ctx.lineTo(-w/2 + 8, -h/2 + 15);
-        ctx.lineTo(-w/2 + 22, -h/2 + 22);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-        ctx.fill();
-        
-        ctx.beginPath();
-        ctx.moveTo(w/2 - 15, -h/2 + 8);
-        ctx.lineTo(w/2 - 8, -h/2 + 15);
-        ctx.lineTo(w/2 - 22, -h/2 + 22);
-        ctx.fill();
-        
-        ctx.restore();
+    function initFractals() {
+        // Fractal patterns are generated dynamically in animation
     }
     
-    function drawDataThreads(w, h) {
-        const timeOffset = time * 0.002;
-        const threadCount = 12;
+    function drawNeuralSphere() {
+        const r = sphere.radius;
+        const pulseIntensity = 0.95 + Math.sin(time * 0.003) * 0.05;
+        const currentRadius = r * pulseIntensity;
         
-        for (let i = 0; i < threadCount; i++) {
-            const t = (i / threadCount) * Math.PI * 2 + timeOffset;
-            const x1 = Math.sin(t) * w * 0.3;
-            const y1 = Math.cos(t * 1.3) * h * 0.2;
-            const x2 = Math.sin(t + 0.5) * w * 0.25;
-            const y2 = Math.cos(t * 1.3 + 0.8) * h * 0.25;
-            const x3 = Math.sin(t + 1) * w * 0.2;
-            const y3 = Math.cos(t * 1.3 + 1.6) * h * 0.2;
+        ctx.save();
+        ctx.translate(sphere.x, sphere.y);
+        
+        // Apply subtle mouse parallax rotation
+        const rotX = sphere.rotationX + mouseY * 0.1;
+        const rotY = sphere.rotationY + mouseX * 0.1;
+        ctx.transform(1, rotX * 0.2, rotY * 0.2, 1, 0, 0);
+        
+        // ========== SPHERE CORE ==========
+        // Inner core glow (violet energy)
+        const coreGradient = ctx.createRadialGradient(-r*0.1, -r*0.1, r*0.1, 0, 0, r*0.7);
+        coreGradient.addColorStop(0, 'rgba(139, 92, 246, 0.9)');
+        coreGradient.addColorStop(0.3, 'rgba(139, 92, 246, 0.6)');
+        coreGradient.addColorStop(0.6, 'rgba(139, 92, 246, 0.2)');
+        coreGradient.addColorStop(1, 'rgba(139, 92, 246, 0)');
+        
+        ctx.beginPath();
+        ctx.arc(0, 0, currentRadius * 0.65, 0, Math.PI * 2);
+        ctx.fillStyle = coreGradient;
+        ctx.fill();
+        
+        // ========== FRACTAL PATTERNS (Internal Computational Energy) ==========
+        const fractalCount = 24;
+        const fractalTime = time * 0.002;
+        
+        for (let i = 0; i < fractalCount; i++) {
+            const angle = (i / fractalCount) * Math.PI * 2 + fractalTime;
+            const innerRadius = currentRadius * (0.4 + Math.sin(angle * 3 + fractalTime) * 0.1);
+            const outerRadius = currentRadius * (0.65 + Math.cos(angle * 2 + fractalTime * 1.3) * 0.08);
             
-            // Create gradient for data thread
-            const grad = ctx.createLinearGradient(x1, y1, x3, y3);
-            grad.addColorStop(0, 'rgba(139, 92, 246, 0)');
-            grad.addColorStop(0.3, 'rgba(139, 92, 246, 0.8)');
-            grad.addColorStop(0.7, 'rgba(139, 92, 246, 0.8)');
-            grad.addColorStop(1, 'rgba(139, 92, 246, 0)');
+            // Fractal branches
+            const branchCount = 3 + Math.floor(Math.sin(angle * 5 + fractalTime) * 2);
+            for (let b = 0; b < branchCount; b++) {
+                const branchAngle = angle + (b - branchCount/2) * 0.3;
+                const x1 = Math.cos(branchAngle) * innerRadius;
+                const y1 = Math.sin(branchAngle) * innerRadius;
+                const x2 = Math.cos(branchAngle + 0.2) * outerRadius;
+                const y2 = Math.sin(branchAngle + 0.2) * outerRadius;
+                
+                const fractalGradient = ctx.createLinearGradient(x1, y1, x2, y2);
+                fractalGradient.addColorStop(0, 'rgba(139, 92, 246, 0.8)');
+                fractalGradient.addColorStop(1, 'rgba(139, 92, 246, 0.2)');
+                
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.strokeStyle = fractalGradient;
+                ctx.lineWidth = 1.5 + Math.sin(angle * 4 + fractalTime) * 0.8;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = '#8B5CF6';
+                ctx.stroke();
+            }
+        }
+        
+        // Microscopic fractures (glowing cracks)
+        const crackCount = 40;
+        for (let i = 0; i < crackCount; i++) {
+            const crackAngle = (i * 37) % 360;
+            const rad = crackAngle * Math.PI / 180;
+            const crackRadius = currentRadius * (0.5 + Math.sin(time * 0.005 + i) * 0.15);
+            const x1 = Math.cos(rad) * currentRadius * 0.4;
+            const y1 = Math.sin(rad) * currentRadius * 0.4;
+            const x2 = Math.cos(rad + 0.1) * crackRadius;
+            const y2 = Math.sin(rad + 0.1) * crackRadius;
             
             ctx.beginPath();
             ctx.moveTo(x1, y1);
-            ctx.quadraticCurveTo(x2, y2, x3, y3);
-            ctx.strokeStyle = grad;
-            ctx.lineWidth = 1.5 + Math.sin(t * 2 + timeOffset) * 0.5;
-            ctx.shadowBlur = 6;
-            ctx.shadowColor = '#8B5CF6';
+            ctx.quadraticCurveTo(
+                x1 + (x2 - x1) * 0.5 + Math.sin(time * 0.01 + i) * 3,
+                y1 + (y2 - y1) * 0.5 + Math.cos(time * 0.01 + i) * 3,
+                x2, y2
+            );
+            ctx.strokeStyle = `rgba(139, 92, 246, ${0.3 + Math.sin(time * 0.008 + i) * 0.2})`;
+            ctx.lineWidth = 1;
+            ctx.shadowBlur = 3;
             ctx.stroke();
         }
+        
+        // ========== SPHERE SURFACE (Polished Obsidian) ==========
+        // Main sphere gradient (dark obsidian)
+        const sphereGradient = ctx.createRadialGradient(-r*0.3, -r*0.3, r*0.2, 0, 0, r);
+        sphereGradient.addColorStop(0, 'rgba(20, 20, 35, 0.95)');
+        sphereGradient.addColorStop(0.4, 'rgba(10, 10, 20, 0.85)');
+        sphereGradient.addColorStop(0.7, 'rgba(5, 5, 12, 0.9)');
+        sphereGradient.addColorStop(1, 'rgba(0, 0, 0, 0.95)');
+        
+        ctx.beginPath();
+        ctx.arc(0, 0, currentRadius, 0, Math.PI * 2);
+        ctx.fillStyle = sphereGradient;
+        ctx.fill();
+        
+        // ========== ICE BLUE RIM LIGHTING (High Contrast) ==========
+        const rimAngle = time * 0.002;
+        
+        // Primary rim light (ice blue)
+        for (let i = 0; i < 3; i++) {
+            const offset = i * Math.PI * 2 / 3;
+            const rimX = Math.cos(rimAngle + offset) * currentRadius * 0.95;
+            const rimY = Math.sin(rimAngle + offset) * currentRadius * 0.95;
+            
+            const rimGradient = ctx.createRadialGradient(rimX, rimY, 0, rimX, rimY, 25);
+            rimGradient.addColorStop(0, 'rgba(224, 247, 250, 0.9)');
+            rimGradient.addColorStop(0.5, 'rgba(100, 200, 220, 0.5)');
+            rimGradient.addColorStop(1, 'rgba(139, 92, 246, 0)');
+            
+            ctx.beginPath();
+            ctx.arc(rimX, rimY, 20, 0, Math.PI * 2);
+            ctx.fillStyle = rimGradient;
+            ctx.fill();
+        }
+        
+        // Sharp rim highlight (edge definition)
+        ctx.beginPath();
+        ctx.arc(0, 0, currentRadius - 2, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(224, 247, 250, 0.6)';
+        ctx.lineWidth = 2;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = '#8B5CF6';
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.arc(0, 0, currentRadius - 1, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(224, 247, 250, 0.3)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        
+        // Surface highlights (specular reflections)
+        const highlightAngle = (time * 0.001) % (Math.PI * 2);
+        const highlightX = Math.cos(highlightAngle) * currentRadius * 0.6;
+        const highlightY = Math.sin(highlightAngle) * currentRadius * 0.4;
+        
+        const specularGradient = ctx.createRadialGradient(highlightX, highlightY, 0, highlightX, highlightY, 30);
+        specularGradient.addColorStop(0, 'rgba(224, 247, 250, 0.4)');
+        specularGradient.addColorStop(1, 'rgba(224, 247, 250, 0)');
+        
+        ctx.beginPath();
+        ctx.arc(highlightX, highlightY, 25, 0, Math.PI * 2);
+        ctx.fillStyle = specularGradient;
+        ctx.fill();
+        
+        // Secondary highlight (moving)
+        const highlightX2 = Math.cos(highlightAngle + 2) * currentRadius * 0.4;
+        const highlightY2 = Math.sin(highlightAngle + 2) * currentRadius * 0.3;
+        
+        ctx.beginPath();
+        ctx.arc(highlightX2, highlightY2, 15, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(224, 247, 250, 0.2)';
+        ctx.fill();
+        
+        // ========== VIOLET ENERGY GLOW (Internal Core) ==========
+        const energyPulse = 0.7 + Math.sin(time * 0.008) * 0.2;
+        const energyGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, currentRadius * 0.55);
+        energyGradient.addColorStop(0, `rgba(139, 92, 246, ${0.4 * energyPulse})`);
+        energyGradient.addColorStop(0.4, `rgba(139, 92, 246, ${0.2 * energyPulse})`);
+        energyGradient.addColorStop(0.7, `rgba(139, 92, 246, 0.1)`);
+        energyGradient.addColorStop(1, 'rgba(139, 92, 246, 0)');
+        
+        ctx.beginPath();
+        ctx.arc(0, 0, currentRadius, 0, Math.PI * 2);
+        ctx.fillStyle = energyGradient;
+        ctx.fill();
+        
+        ctx.restore();
     }
     
     function drawParticles() {
@@ -1493,92 +1556,77 @@
         for (let i = 0; i < particles.length; i++) {
             const p = particles[i];
             
-            // Animate particles flowing upward
-            p.y -= p.speed * 0.8;
-            p.x += Math.sin(p.y * 0.02 + timeOffset) * 0.3;
+            // Animate particles flowing around sphere
+            p.x += Math.sin(p.y * 0.02 + timeOffset) * 0.2;
+            p.y -= p.speed * 0.6;
             
             // Reset if out of bounds
-            if (p.y < -200 || p.y > 200) {
-                p.y = -150;
-                p.x = (Math.random() - 0.5) * 250;
-                p.z = Math.random() * 200 - 100;
+            if (p.y < -sphere.radius * 1.5 || p.y > sphere.radius * 1.5) {
+                p.y = -sphere.radius * 1.2;
+                p.x = (Math.random() - 0.5) * sphere.radius * 1.8;
             }
             
-            // Calculate opacity based on z-depth
-            const opacity = 0.3 + (p.z + 100) / 200 * 0.5;
+            // Distance from sphere center for glow effect
+            const dx = p.x;
+            const dy = p.y;
+            const distToCenter = Math.sqrt(dx * dx + dy * dy);
+            const isNearSphere = Math.abs(distToCenter - sphere.radius) < 30;
             
-            // Draw particle as glowing dot
+            let opacity = p.glow;
+            if (isNearSphere) opacity = p.glow * 0.8;
+            
             ctx.beginPath();
-            ctx.arc(monolith.x + p.x, monolith.y + p.y, p.size, 0, Math.PI * 2);
+            ctx.arc(sphere.x + p.x, sphere.y + p.y, p.size, 0, Math.PI * 2);
             
-            // Pulse effect
-            const pulse = 0.5 + Math.sin(time * 0.005 + p.phase) * 0.3;
-            ctx.fillStyle = `rgba(139, 92, 246, ${p.glow * pulse * opacity})`;
-            ctx.shadowBlur = 8;
+            const pulse = 0.5 + Math.sin(time * 0.008 + p.phase) * 0.3;
+            ctx.fillStyle = `rgba(139, 92, 246, ${opacity * pulse * 0.5})`;
+            ctx.shadowBlur = 4;
             ctx.shadowColor = '#8B5CF6';
             ctx.fill();
         }
     }
     
     function drawBackgroundGlow() {
-        // Soft violet halo
-        const grad = ctx.createRadialGradient(
-            monolith.x, monolith.y, 50,
-            monolith.x, monolith.y, width * 0.4
+        // Soft violet aura around sphere
+        const auraGradient = ctx.createRadialGradient(
+            sphere.x, sphere.y, sphere.radius * 0.8,
+            sphere.x, sphere.y, sphere.radius * 1.8
         );
-        grad.addColorStop(0, 'rgba(139, 92, 246, 0.08)');
-        grad.addColorStop(0.5, 'rgba(139, 92, 246, 0.03)');
-        grad.addColorStop(1, 'rgba(139, 92, 246, 0)');
+        auraGradient.addColorStop(0, 'rgba(139, 92, 246, 0.08)');
+        auraGradient.addColorStop(0.5, 'rgba(139, 92, 246, 0.03)');
+        auraGradient.addColorStop(1, 'rgba(139, 92, 246, 0)');
         
-        ctx.fillStyle = grad;
+        ctx.fillStyle = auraGradient;
         ctx.fillRect(0, 0, width, height);
         
-        // Floating orbs
-        for (let i = 0; i < 6; i++) {
-            const angle = time * 0.0005 + (i * Math.PI * 2 / 6);
-            const radius = Math.min(width, height) * 0.25;
-            const x = monolith.x + Math.cos(angle) * radius;
-            const y = monolith.y + Math.sin(angle * 1.5) * radius * 0.5;
+        // Ice blue ambient light rays
+        for (let i = 0; i < 8; i++) {
+            const angle = (time * 0.0005 + i * Math.PI * 2 / 8) % (Math.PI * 2);
+            const x = sphere.x + Math.cos(angle) * sphere.radius * 1.2;
+            const y = sphere.y + Math.sin(angle) * sphere.radius * 0.8;
             
-            const orbGrad = ctx.createRadialGradient(x, y, 0, x, y, 60);
-            orbGrad.addColorStop(0, 'rgba(139, 92, 246, 0.03)');
-            orbGrad.addColorStop(1, 'rgba(139, 92, 246, 0)');
+            const rayGradient = ctx.createRadialGradient(x, y, 0, x, y, 80);
+            rayGradient.addColorStop(0, 'rgba(224, 247, 250, 0.04)');
+            rayGradient.addColorStop(1, 'rgba(224, 247, 250, 0)');
             
-            ctx.fillStyle = orbGrad;
             ctx.beginPath();
-            ctx.arc(x, y, 60, 0, Math.PI * 2);
+            ctx.arc(x, y, 70, 0, Math.PI * 2);
+            ctx.fillStyle = rayGradient;
             ctx.fill();
         }
     }
     
     function drawScanLines() {
-        // Subtle scan line effect for that "digital" feel
-        for (let i = 0; i < 8; i++) {
-            const y = (time * 2 + i * 60) % height;
+        // Subtle scan lines for technical feel
+        for (let i = 0; i < 5; i++) {
+            const y = (time * 2 + i * 80) % height;
             ctx.beginPath();
             ctx.moveTo(0, y);
             ctx.lineTo(width, y);
             ctx.strokeStyle = 'rgba(139, 92, 246, 0.03)';
-            ctx.lineWidth = 2;
+            ctx.lineWidth = 1;
             ctx.stroke();
         }
-    }
-    
-    function drawRimLightReflection() {
-        // Animated rim light sweep
-        const sweepAngle = (time * 0.002) % (Math.PI * 2);
-        const radius = 250 * monolith.scale;
-        
-        ctx.beginPath();
-        ctx.arc(monolith.x + Math.cos(sweepAngle) * radius * 0.8, 
-                monolith.y + Math.sin(sweepAngle) * radius, 
-                30, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(139, 92, 246, 0.15)';
-        ctx.shadowBlur = 25;
-        ctx.shadowColor = '#8B5CF6';
-        ctx.fill();
-        
-        ctx.shadowBlur = 0;
     }
     
     function animate() {
@@ -1586,26 +1634,23 @@
         
         time++;
         
-        // Clear canvas with dark background
+        // Clear canvas with matte off-black
         ctx.fillStyle = '#121212';
         ctx.fillRect(0, 0, width, height);
         
         // Apply subtle rotation over time
-        monolith.rotationX = Math.sin(time * 0.0005) * 0.1;
-        monolith.rotationY = Math.cos(time * 0.0003) * 0.1;
+        sphere.rotationX = Math.sin(time * 0.0003) * 0.05;
+        sphere.rotationY = Math.cos(time * 0.0004) * 0.05;
         
         // Draw everything
         drawBackgroundGlow();
         drawParticles();
-        drawGlassMonolith();
-        drawRimLightReflection();
+        drawNeuralSphere();
         drawScanLines();
         
-        // Continue animation
         animationId = requestAnimationFrame(animate);
     }
     
-    // Start when page loads
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
